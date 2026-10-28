@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stadiums - FIFA World Cup Fan Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="music-player.css">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#fff;
+overflow-x:hidden;
+}
+
+
+/* HERO */
+
+.hero-sub{
+
+height:60vh;
+
+background:
+linear-gradient(rgba(0,0,0,.45),
+rgba(0,0,0,.65)),
+url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1800");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:white;
+position:relative;
+}
+
+
+/* NAVBAR */
+
+nav{
+
+position:absolute;
+top:25px;
+width:90%;
+height:75px;
+
+background:rgba(58,74,15,.55);
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.2);
+
+border-radius:20px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 30px;
+
+}
+
+
+.logo{
+
+font-size:26px;
+font-weight:800;
+color:white;
+text-decoration:none;
+
+}
+
+.logo span{
+color:#FFD700;
+}
+
+
+.menu{
+
+display:flex;
+gap:30px;
+
+}
+
+
+.menu a{
+
+color:white;
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+
+}
+
+
+.menu a:hover,
+.menu .active{
+
+color:#FFD700;
+
+}
+
+
+
+.ticket-btn{
+padding:12px 25px;
+border-radius:50px;
+border:none;
+font-weight:700;
+cursor:pointer;
+background:#FFD700;
+}
+
+
+/* HERO CONTENT */
+
+
+.hero-content{
+
+text-align:center;
+
+}
+
+
+.hero-content h1{
+
+font-size:75px;
+font-weight:900;
+
+}
+
+
+.hero-content p{
+
+font-size:22px;
+margin-top:15px;
+
+}
+
+
+/* SECTION */
+
+
+section{
+
+padding:80px 8%;
+
+}
+
+
+
+.search-box{
+
+display:flex;
+justify-content:center;
+margin-bottom:50px;
+
+}
+
+
+.search-box input{
+
+width:350px;
+padding:15px 25px;
+
+border-radius:50px;
+border:2px solid #001f54;
+
+font-size:16px;
+
+}
+
+
+
+/* STADIUM GRID */
+
+
+.stadium-grid{
+
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(330px,1fr));
+
+gap:30px;
+
+}
+
+
+.stadium-card{
+
+background:white;
+
+border-radius:25px;
+
+overflow:hidden;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.1);
+
+transition:.4s;
+
+}
+
+
+.stadium-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+
+
+.stadium-card img{
+
+width:100%;
+height:220px;
+object-fit:cover;
+
+}
+
+
+
+.stadium-info{
+
+padding:25px;
+
+}
+
+
+
+.stadium-info h2{
+
+font-size:24px;
+color:#001f54;
+
+}
+
+
+.stadium-info p{
+
+margin-top:10px;
+color:#555;
+
+}
+
+
+
+.tag{
+
+display:inline-block;
+
+margin-top:15px;
+
+background:#FFD700;
+
+padding:7px 15px;
+
+border-radius:20px;
+
+font-size:13px;
+
+font-weight:700;
+
+}
+
+
+
+/* FOOTER */
+
+
+footer{
+
+background:#00142f;
+color:white;
+
+padding:60px;
+
+text-align:center;
+
+}
+
+
+
+/* MOBILE */
+
+
+@media(max-width:900px){
+
+.menu{
+display:none;
+}
+
+.hero-content h1{
+font-size:45px;
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="hero-sub">
+
+
+<nav>
+
+<div class="logo">
+🏆 FIFA<span>HUB</span>
+</div>
+
+
+
+<div class="menu">
+
+<a href="index.html">Home</a>
+<a href="teams/teams.html">Teams</a>
+<a href="matches/matches.html">Matches</a>
+<a href="players/players.html">Players</a>
+<a href="stadium.html" class="active">Stadiums</a> 
+<a href="gallery.html">Gallery</a>
+<a href="news.html">News</a>
+
+</div>
+
+
+<a href="../index.html">
+    <button class="ticket-btn">
+        Buy Tickets
+    </button>
+</a>
+
+
+</nav>
+
+
+
+<div class="hero-content">
+
+<h1>World Cup Stadiums</h1>
+
+<p>Explore the iconic venues hosting FIFA World Cup 2026</p>
+
+</div>
+
+
+</header>
+
+
+
+
+<section>
+
+
+<div class="search-box">
+
+<input type="text" 
+id="search"
+placeholder="Search Stadium..."
+onkeyup="searchStadium()">
+
+</div>
+
+
+
+
+<div class="stadium-grid" id="stadiumList">
+
+
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/736x/4b/d1/b0/4bd1b02c8dd248fbd3c273b7e953befd.jpg">
+
+<div class="stadium-info">
+
+<h2>Estadio Azteca Stadium</h2>
+
+<p>📍 Mexico City, Mexico</p>
+
+<p>Capacity: 87,000+</p>
+<a href="https://www.estadiobanorte.com.mx/" target="_blank">
+<span class="tag">Opening Venue</span>
+</a>
+</div>
+
+</div>
+
+
+
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/736x/70/1d/f9/701df9cfc1d4819d0745a4619f147a51.jpg">
+
+<div class="stadium-info">
+
+<h2>MetLife Stadium</h2>
+
+<p>📍 New York / New Jersey, USA</p>
+
+<p>Capacity: 82,500+</p>
+<a href="https://www.metlifestadium.com/" target="_blank">
+<span class="tag">Final Venue</span>
+</a>
+</div>
+
+</div>
+
+
+
+
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/736x/4c/62/74/4c6274a73970f715ef473bc7d83e8b3e.jpg">
+
+<div class="stadium-info">
+
+<h2>AT&T Stadium</h2>
+
+<p>📍 Arlington, USA</p>
+
+<p>Capacity: 80,000+</p>
+<a href="https://www.attstadium.com/" target="_blank">
+<span class="tag">Quarter Finals</span>
+</a>
+</div>
+
+</div>
+
+
+
+
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/73/1c/15/731c154ecd84078663517ffc936acc0e.jpg">
+
+<div class="stadium-info">
+
+<h2>SoFi Stadium</h2>
+
+<p>📍 Los Angeles, USA</p>
+
+<p>Capacity: 70,000+</p>
+<a href="https://www.sofistadium.com/" target="_blank">
+<span class="tag">Group Stage</span>
+</a>    
+</div>
+
+</div>
+
+
+
+
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/736x/41/d8/7e/41d87e429d4a30f22a6cf64b36f5b66b.jpg">
+
+<div class="stadium-info">
+
+<h2>Lumen Field Stadium</h2>
+
+<p>📍 Seattle, USA</p>
+
+<p>Capacity: 69,000+</p>
+<a href="https://www.lumenfield.com/" target="_blank">
+<span class="tag">Group Stage</span>
+</a>
+</div>
+
+</div>
+
+
+
+
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/fe/b7/13/feb7132a8d882056519264f5656e2c82.jpg">
+
+<div class="stadium-info">
+
+<h2> BC Place Stadium</h2>
+
+<p>📍 Vancouver, Canada</p>
+
+<p>Capacity: 54,000+</p>
+<a href="https://www.bcplace.com/" target="_blank">
+<span class="tag">Canada Venue</span>
+</a>
+</div>
+
+</div>
+
+
+<div class="stadium-card">
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFIcZdBUPXEzOgceZ4CKrcymlC0RF48z9QkqGAA2smh-i3xl-Cza-U53Y&s=10">
+
+<div class="stadium-info">
+
+<h2> Mercedes-Benz Stadium</h2>
+
+<p>📍 Atlanta, USA</p>
+
+<p>Capacity: 71,000+</p>
+<a href="https://www.mercedesbenzstadium.com/" target="_blank">
+<span class="tag">USA Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://sportsmatik.com/uploads/wiki-venues/Lincoln-Financial-Field_1494314340_67239.jpg">
+
+<div class="stadium-info">
+
+<h2> Lincoln Financial Field</h2>
+
+<p>📍 Philadelphia, USA</p>
+
+<p>Capacity: 69,000+</p>
+<a href="https://www.lincolnfinancialfield.com/" target="_blank">
+<span class="tag">USA Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/b4/ee/60/b4ee601eba6860cd498170261ecc6e21.jpg">
+
+<div class="stadium-info">
+
+<h2>  Levi's Stadium </h2>
+
+<p>📍 Santa Clara, California</p>
+
+<p>Capacity: 68,500+</p>
+<a href="https://levisstadium.com/" target="_blank">
+<span class="tag">USA Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/9d/34/20/9d3420609e6178450302e973922d2dcf.jpg">
+
+<div class="stadium-info">
+
+<h2> NRG Stadium</h2>
+
+<p>📍 Houston, USA</p>
+
+<p>Capacity: 72,220+</p>
+<a href="https://www.nrgpark.com/nrg-stadium/" target="_blank">
+<span class="tag">USA Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/c3/d9/df/c3d9dfa16c6f11ca6aa1a58f62dfe76d.jpg">
+
+<div class="stadium-info">
+
+<h2>  Arrowhead Stadium </h2>
+
+<p>📍 Kansas City, USA</p>
+
+<p>Capacity: 73,426+</p>
+<a href="https://www.arrowheadstadium.com/" target="_blank">
+<span class="tag">USA Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/0e/51/f1/0e51f17f2bbd86a808bfe978529cc42c.jpg">
+
+<div class="stadium-info">
+
+<h2>  Hard Rock Stadium </h2>
+
+<p>📍 Miami, USA</p>
+
+<p>Capacity: 65,326+</p>
+<a href="https://www.hardrockstadium.com/" target="_blank">
+<span class="tag">USA Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/736x/35/72/ea/3572ea5e4296fa118ac5e2861d10e381.jpg">
+
+<div class="stadium-info">
+
+<h2>  Gillette Stadium </h2>
+
+<p>📍 Foxborough, Massachusetts</p>
+
+<p>Capacity: 64,628+</p>
+<a href="https://www.gillettestadium.com/" target="_blank">
+<span class="tag">USA Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/86/81/a4/8681a4b2b29ae5243e20c3ade96e683a.jpg">
+
+<div class="stadium-info">
+
+<h2>  BMO Field Stadium</h2>
+
+<p>📍 Exhibition Place in Toronto, Ontario, Canada</p>
+
+<p>Capacity: 30,000+</p>
+<a href="https://www.bmofield.com/" target="_blank">
+<span class="tag">Canada Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/29/06/20/290620f94c9f0bfbc3c274f721a40a92.jpg">
+
+<div class="stadium-info">
+
+<h2>   Estadio BBVA Stadium</h2>
+
+<p>📍 Guadalupe, Nuevo León, Mexico</p>
+
+<p>Capacity: 53,500+</p>
+<a href="https://estadio-bbva.mx/" target="_blank">
+<span class="tag">Mexico Venue</span>
+</a>
+</div>
+
+</div>
+
+<div class="stadium-card">
+
+<img src="https://i.pinimg.com/1200x/aa/f1/fa/aaf1faa9da94ee2397d6940c019c1d91.jpg">
+
+<div class="stadium-info">
+
+<h2>   Estadio Akron Stadium</h2>
+
+<p>📍 Zapopan, Jalisco, Mexico</p>
+
+<p>Capacity: 49,813+</p>
+<a href="https://estadioakron.mx/" target="_blank">
+<span class="tag">Mexico Venue</span>
+</a>
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+
+<footer>
+
+<h2>FIFA World Cup Fan Hub</h2>
+
+<br>
+
+<p>The Ultimate Football Experience ⚽</p>
+
+</footer>
+
+
+
+
+
+<script>
+
+
+function searchStadium(){
+
+
+let input=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+
+let cards=document
+.getElementsByClassName("stadium-card");
+
+
+
+for(let i=0;i<cards.length;i++){
+
+
+let name=cards[i]
+.innerText
+.toLowerCase();
+
+
+
+if(name.includes(input)){
+
+cards[i].style.display="block";
+
+}
+
+else{
+
+cards[i].style.display="none";
+
+}
+
+
+}
+
+
+}
+
+
+
+</script>
+<script src="music-player.js" defer></script>
+</body>
+</html>

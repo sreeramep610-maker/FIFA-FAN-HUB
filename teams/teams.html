@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA Fan Hub | Teams</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../music-player.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #f5f7fb; overflow-x: hidden; }
+
+/* NAVBAR */
+
+nav{
+position:absolute;
+top:25px;
+width:90%;
+height:75px;
+background:rgba(58,74,15,.55);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.2);
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+}
+
+.logo{
+font-size:26px;
+font-weight:800;
+color:white;
+text-decoration:none;
+}
+.logo span{ color:#FFD700; }
+
+.menu{ display:flex; gap:30px; }
+
+.menu a{
+color:white;
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+}
+.menu a:hover,
+.menu .active{ color:#FFD700; }
+
+.ticket-btn{
+padding:12px 25px;
+border-radius:50px;
+border:none;
+font-weight:700;
+cursor:pointer;
+background:#FFD700;
+}
+
+        /* HERO */
+        .hero { height: 50vh; background: linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.7)), url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1800"); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; text-align: center; color: white; }
+        .hero-content h1 { font-size: 70px; font-weight: 800; }
+
+        /* CONTENT */
+        .container { padding: 80px 8%; }
+        .search-area { display: flex; justify-content: center; margin-bottom: 35px; }
+        .search-area input { width: 650px; padding: 18px; border: none; outline: none; border-radius: 18px; font-size: 16px; box-shadow: 0 10px 25px rgba(0,0,0,.08); }
+
+        .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 60px; }
+        .filters button { padding: 12px 25px; border: none; border-radius: 50px; background: white; cursor: pointer; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,.08); transition: .3s; }
+        .filters button:hover { background: #001f54; color: white; }
+
+        /* GRID & CARDS */
+        .flag-bg { width: 100%; height: 100px; background: #f0f0f0; border-radius: 10px; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+        .section-title { font-size: 48px; text-align: center; margin-bottom: 50px; color: #001f54; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .team-card { background: white; border-radius: 25px; padding: 30px; cursor: pointer; transition: .4s; box-shadow: 0 12px 30px rgba(0,0,0,.05); border: 1px solid #eee; }
+        .team-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .team-card h2 { font-size: 24px; margin-bottom: 8px; color: #001f54; }
+        .team-card {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    cursor: pointer;
+    transition: .4s;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    position: relative; /* Essential for background positioning */
+    overflow: hidden;   /* Keeps the flag inside the card */
+}
+
+        .team-card > div {position: relative;z-index: 1;}
+        .team-stats { margin-top: 25px; display: flex; justify-content: space-between; }
+        .stat { text-align: center; }
+        .stat h3 { color: #001f54; font-size: 20px; }
+        .stat p { font-size: 11px; color: #888; }
+    </style>
+</head>
+<body>
+
+<nav>
+
+<div class="logo">
+🏆 FIFA<span>HUB</span>
+</div>
+
+
+    <div class="menu">
+        <a href="../index.html">Home</a>
+        <a href="teams.html" class="active">Teams</a>
+        <a href="../matches/matches.html">Matches</a>
+        <a href="../players/players.html">Players</a>
+        <a href="../stadium.html">Stadiums</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../news.html">News</a>
+    </div>
+<button class="ticket-btn" id="buyTickets">
+Buy Tickets
+</button>
+
+</nav>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>TEAMS</h1>
+            <p>Explore National Teams Competing For Glory</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-area">
+            <input type="text" id="searchInput" placeholder="Search teams...">
+        </div>
+
+        <div class="filters">
+            <button onclick="filterTeams('all')">All</button>
+            <button onclick="filterTeams('UEFA')">UEFA</button>
+            <button onclick="filterTeams('CONMEBOL')">CONMEBOL</button>
+            <button onclick="filterTeams('CAF')">CAF</button>
+            <button onclick="filterTeams('AFC')">AFC</button>
+            <button onclick="filterTeams('CONCACAF')">CONCACAF</button>
+            <button onclick="filterTeams('OFC')">OFC</button>
+        </div>
+
+        <h2 class="section-title">National Teams</h2>
+        <div class="team-grid" id="teamGrid"></div>
+    </div>
+
+    <!-- Ensure your data file is loaded here -->
+    <script src="teams-data.js"></script>
+
+    <script>
+        const teamGrid = document.getElementById("teamGrid");
+
+function renderTeams(data = teams) {
+    teamGrid.innerHTML = "";
+    Object.values(data).forEach(team => {
+        const card = document.createElement("div");
+        card.className = "team-card";
+        
+        // Fix: Use correct property name 'flagurl'
+        const flagContent = team.flagurl.startsWith("http") 
+            ? `<img src="${team.flagurl}" class="flag-bg" alt="flag">` 
+            : `<div class="flag-bg" style="display:flex; justify-content:center; align-items:center; font-size: 50px;">${team.flagurl}</div>`;
+
+        card.innerHTML = `
+            ${flagContent}
+            <div class="card-content">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <img src="${team.logo}" alt="${team.name} Logo" style="width: 50px; height: 50px; object-fit: contain;">
+                    <div>
+                        <h2 style="font-size: 22px; color: #001f54; margin: 0;">${team.name}</h2>
+                        <p style="font-size: 14px; color: #666; margin: 0;">${team.nickname}</p>
+                    </div>
+                </div>
+                <div class="team-stats" style="border-top: 1px solid #eee; padding-top: 15px;">
+                    <div class="stat"><h3>${team.titles}</h3><p>Titles</p></div>
+                    <div class="stat"><h3>${team.appearances}</h3><p>Appearances</p></div>
+                    <div class="stat"><h3>#${team.ranking}</h3><p>Rank</p></div>
+                </div>
+            </div>
+        `;
+        
+        card.addEventListener("click", () => { window.location.href = `team.html?id=${team.id}`; });
+        teamGrid.appendChild(card);
+    });
+}
+
+        function filterTeams(conf) {
+            if(conf === "all") return renderTeams();
+            const filtered = {};
+            Object.keys(teams).forEach(key => {
+                if(teams[key].confederation === conf) filtered[key] = teams[key];
+            });
+            renderTeams(filtered);
+        }
+
+        document.getElementById("searchInput").addEventListener("input", function() {
+            const value = this.value.toLowerCase();
+            document.querySelectorAll(".team-card").forEach(card => {
+                card.style.display = card.innerText.toLowerCase().includes(value) ? "block" : "none";
+            });
+        });
+
+        // Initial Load
+        if(typeof teams === "undefined") {
+            teamGrid.innerHTML = "<h2 style='text-align:center; color:red'>Error: teams-data.js not found!</h2>";
+        } else {
+            renderTeams();
+        }
+    </script>
+    <script>
+
+const buyBtn =
+document.getElementById("buyTickets");
+
+buyBtn.addEventListener("click",()=>{
+
+const buyBtn = document.getElementById("buyTickets");
+
+buyBtn.addEventListener("click", () => {
+    window.location.href = "../index.html#booking";
+});
+
+});
+</script>
+<script src="../music-player.js" defer></script>
+</body>
+</html>

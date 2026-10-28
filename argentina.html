@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Argentina: The Dream of Back-to-Back Glory — a football news project blog." />
+  <title>Argentina | The Dream of Back-to-Back Glory</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="music-player.css">
+  <style>
+    :root {
+      --navy: #06265f;
+      --blue: #0b4ea2;
+      --gold: #f5c542;
+      --ink: #111827;
+      --muted: #64748b;
+      --paper: #ffffff;
+      --line: #dbe5f0;
+      --shadow: 0 18px 55px rgba(6, 38, 95, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef4fa;
+      font-family: "Inter", Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1180px, 90%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      padding: 8px 5%;
+      color: #dbeafe;
+      background: #061a3d;
+      font-size: 0.82rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 10px 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      width: min(1180px, 90%);
+      min-height: 70px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      background: var(--navy);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      flex-shrink: 0;
+      color: #fff;
+      font-size: 1.45rem;
+      font-weight: 800;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: #fff;
+      font-size: 0.84rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: var(--gold);
+    }
+
+    .back-btn {
+      padding: 11px 20px;
+      color: #111827;
+      background: var(--gold);
+      border: 0;
+      border-radius: 50px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hero {
+      min-height: 680px;
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 70px 8%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .kicker {
+      width: max-content;
+      margin-bottom: 24px;
+      padding: 8px 18px;
+      color: #fff;
+      background: var(--navy);
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    h1,
+    h2 {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    h1 {
+      margin: 0 0 22px;
+      color: #0b1630;
+      font-size: clamp(3rem, 6vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -3px;
+    }
+
+    h2 {
+      margin: 9px 0 14px;
+      color: #0a1731;
+      font-size: clamp(2.1rem, 4vw, 3.6rem);
+      line-height: 1.1;
+    }
+
+    h3 {
+      color: var(--navy);
+    }
+
+    .hero-copy p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.18rem;
+    }
+
+    .hero-image {
+      min-height: 680px;
+      background: #dce9f5;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .btn {
+      width: max-content;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 28px;
+      padding: 13px 20px;
+      color: #fff;
+      background: var(--navy);
+      border-radius: 8px;
+      font-weight: 800;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--blue);
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section.alt {
+      background: #f8fbff;
+    }
+
+    .section-head {
+      max-width: 800px;
+      margin-bottom: 45px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .story-grid,
+    .two-column-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 30px;
+    }
+
+    .two-column-grid {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 30px;
+    }
+
+    .card {
+      padding: 30px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 85px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: 0;
+    }
+
+    .year {
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .photo {
+      min-height: 350px;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .quote {
+      margin: 35px 0;
+      padding: 15px 0 15px 25px;
+      border-left: 5px solid var(--gold);
+      color: #102044;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.65rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .stat {
+      padding: 25px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--blue);
+      font-size: 2.2rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+    }
+
+    .player-grid,
+    .squad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .squad-grid {
+      margin-bottom: 30px;
+    }
+
+    .player-card,
+    .squad-card {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transition: transform 0.4s ease;
+    }
+
+    .player-card:hover,
+    .squad-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .player-card img,
+    .squad-card img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .squad-card img {
+      height: 250px;
+    }
+
+    .player-card:hover img,
+    .squad-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .player-card h3,
+    .squad-card h3 {
+      margin: 0;
+      padding: 20px 20px 8px;
+      color: var(--ink);
+      font-size: 1.25rem;
+    }
+
+    .squad-card p {
+      padding: 0 20px 20px;
+      color: var(--muted);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .video-card {
+      min-height: 245px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      color: #fff;
+      background: #071a3b;
+      border-radius: 20px;
+    }
+
+    .video-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+      background: #fff;
+      border-radius: 50%;
+      font-size: 1.25rem;
+    }
+
+    .video-card h3 {
+      margin: 22px 0 7px;
+      color: #fff;
+      font-size: 1.25rem;
+    }
+
+    .video-card p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+
+    .video-card a {
+      display: inline-block;
+      margin-top: 18px;
+      color: #fff;
+      font-weight: 800;
+      text-decoration: underline;
+    }
+
+    .video-note {
+      margin-top: 22px;
+      padding: 14px 17px;
+      color: #334155;
+      background: #eaf3ff;
+      border-left: 4px solid var(--blue);
+      font-size: 0.9rem;
+    }
+
+    .result {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 25px;
+      align-items: center;
+      padding: 35px;
+      text-align: center;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .team {
+      font-size: 1.3rem;
+      font-weight: 900;
+    }
+
+    .flag-url {
+      width: 65px;
+      height: 45px;
+      margin: 0 auto 8px;
+      overflow: hidden;
+      border-radius: 5px;
+    }
+
+    .flag-url img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .score {
+      color: var(--navy);
+      font-size: 3.2rem;
+      font-weight: 900;
+    }
+
+    .result small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+    }
+
+    .references {
+      display: grid;
+      gap: 12px;
+    }
+
+    .references a {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 55px 0;
+      color: #dbeafe;
+      background: #061a3d;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 35px;
+    }
+
+    footer h3 {
+      color: #fff;
+    }
+
+    footer p,
+    footer li {
+      color: #9fb2cc;
+      font-size: 0.9rem;
+    }
+
+    footer ul {
+      padding: 0;
+      list-style: none;
+      line-height: 2;
+    }
+
+    @media (max-width: 1000px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .menu {
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .story-grid,
+      .two-column-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 420px;
+        order: -1;
+      }
+
+      .hero-copy {
+        padding: 55px 8%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .topbar {
+        display: none;
+      }
+
+      header {
+        position: static;
+      }
+
+      nav,
+      .container {
+        width: calc(100% - 32px);
+      }
+
+      nav {
+        padding: 16px;
+      }
+
+      .menu {
+        gap: 12px 16px;
+      }
+
+      .menu a {
+        font-size: 0.78rem;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .stats,
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result {
+        grid-template-columns: 1fr;
+        padding: 25px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 65px 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <span>ARGENTINA • WORLD CUP 2026</span>
+    <span>ARGENTINA FEATURE</span>
+  </div>
+
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="logo" href="#home">ALBICELESTE<span>24</span></a>
+
+      <div class="menu">
+        <a href="#history" >History</a>
+        <a href="#messi">Messi</a>
+        <a href="#squad">Squad</a>
+        <a href="#scaloni">Scaloni</a>
+        <a href="#journey">Journey</a>
+        <a href="#semifinal">Semi-Final</a>
+        <a href="#final">Final</a>
+        <a href="#legacy">Legacy</a>
+      </div>
+
+      <a href="news.html">
+        <button class="back-btn" type="button">Back to News</button>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <span class="kicker">ARGENTINA</span>
+        <h1>The Dream of Back-to-Back Glory</h1>
+        <p>
+          From defending champions to World Cup finalists, Argentina's 2026
+          campaign became another remarkable chapter in the story of the
+          Albiceleste.
+        </p>
+
+        <div class="hero-meta">
+          <span>● Football Feature</span>
+          <span>● 10-Part Project</span>
+          <span>● World Cup 2026</span>
+        </div>
+
+        <a class="btn" href="#history">Read the Story ↓</a>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://i.pinimg.com/736x/bc/63/e1/bc63e1ec2652a4553d1eda1c90e9e399.jpg"
+          alt="Argentina supporters celebrating in Buenos Aires"
+        />
+      </div>
+    </section>
+
+    <section id="history" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">01 — From Qatar to North America</div>
+          <h2>The Champions Return</h2>
+          <p class="lead">
+            Argentina entered the 2026 World Cup with a huge challenge: defend
+            the title won in Qatar and attempt to achieve consecutive World Cup
+            triumphs.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <article class="card">
+            <h3>A New Challenge for the Champions</h3>
+            <p>
+              Argentina's 2022 victory changed the country's football history.
+              Led by Lionel Messi, the team lifted the World Cup in Qatar and
+              entered a new era of confidence.
+            </p>
+            <p>
+              By 2026, the pressure was different. Argentina were no longer
+              simply chasing a trophy — they were the team everyone wanted to
+              defeat.
+            </p>
+            <div class="quote">
+              “The champions returned with one extraordinary objective: defend
+              the crown.”
+            </div>
+          </article>
+
+          <aside class="card">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="year">2021</div>
+                <div><b>Copa América</b><br />Argentina become continental champions.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="year">2022</div>
+                <div><b>World Cup</b><br />Argentina win the title in Qatar.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="year">2024</div>
+                <div><b>Copa América</b><br />Another major international trophy.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="year">2026</div>
+                <div><b>World Cup</b><br />Argentina reach the final again.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="messi" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">02 — The Leader</div>
+          <h2>One More World Cup</h2>
+          <p class="lead">
+            Lionel Messi remained the biggest name surrounding Argentina's
+            campaign, bringing experience, creativity and leadership to another
+            generation.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <div class="photo">
+            <img
+              src="https://images.openai.com/static-rsc-4/ce8vEXmKqRCbZoRYOhStHsDFc5jJCY4yNNyynY64YmsNHLYxbFrPWfLXRI5OyofFIrT5GGMg_pxswz7WA4kM4vy6mm9PaM3z2JWeEMgX8Gfv7gR1cHfNRKPtQBrA6KZNW8Au_Y6Oub8Uavz3pk8qX6zqKmz1-q_UvYXpC9jfSTRAXeKFYs4EJij_stc_lu35?purpose=fullsize"
+              alt="Argentina fans and national colours"
+            />
+          </div>
+
+          <article class="card">
+            <h3>From Chasing Glory to Protecting a Legacy</h3>
+            <p>
+              Messi's international career changed forever after Argentina's
+              Copa América triumph and the 2022 World Cup. In 2026, the story
+              was no longer about whether he could win a major international
+              trophy.
+            </p>
+            <p>
+              His role became that of a leader guiding a team that mixed
+              experienced champions with emerging talents.
+            </p>
+
+            <div class="stats">
+              <div class="stat">
+                <strong>CAP</strong>
+                <span>Captain and leader</span>
+              </div>
+              <div class="stat">
+                <strong>10</strong>
+                <span>Creative influence</span>
+              </div>
+              <div class="stat">
+                <strong>∞</strong>
+                <span>Legacy</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="squad" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">03 — The Squad & New Generation</div>
+          <h2>Argentina's Squad</h2>
+          <p class="lead">
+            Argentina's strength came from combining experienced leaders with a
+            new generation ready to take responsibility on the biggest stage.
+          </p>
+        </div>
+
+        <div class="squad-grid">
+          <article class="squad-card">
+            <img
+              src="https://images.openai.com/static-rsc-4/xEXjb50LBnOqmauI4iElMkguU0GCXvSeis6GRf3oQvSpcJwJVkbkOiAK-POkGXKd2kAwh1YQOL52KhTrq3ryaD2AaFEkbAiI9tsfEMorIJItpOOXImVyCta_5AQvOW4_kvLyWalSU9OK_5n3oiGxtNs-B_SVY0G8ibI5q4KPxhGOhZY9K3Tg7EisWK4DjzaO?purpose=fullsize"
+              alt="Argentina football squad"
+            />
+            <h3>Argentina's 2026 Squad</h3>
+            <p>
+              A mix of experienced leaders and emerging talents defined
+              Argentina's squad for the 2026 World Cup.
+            </p>
+          </article>
+        </div>
+
+        <h2>Argentina's Future Stars</h2>
+
+        <div class="player-grid">
+          <article class="player-card">
+            <img src="https://i.pinimg.com/736x/8f/e0/20/8fe020e80daa55888715d8eab9b706e5.jpg" alt="Julián Álvarez" />
+            <h3>Julián Álvarez</h3>
+          </article>
+
+          <article class="player-card">
+            <img src="https://i.pinimg.com/736x/02/ae/37/02ae377e8ab71b0ce560c19473384d39.jpg" alt="Lautaro Martínez" />
+            <h3>Lautaro Martínez</h3>
+          </article>
+
+          <article class="player-card">
+            <img src="https://i.pinimg.com/736x/68/1d/13/681d13222f94559f5fdffd7f77941d55.jpg" alt="Enzo Fernández" />
+            <h3>Enzo Fernández</h3>
+          </article>
+
+          <article class="player-card">
+            <img src="https://i.pinimg.com/736x/d2/08/b4/d208b4acc84b34a4736f704cc75046be.jpg" alt="Alexis Mac Allister" />
+            <h3>Alexis Mac Allister</h3>
+          </article>
+
+          <article class="player-card">
+            <img src="https://i.pinimg.com/736x/35/ff/98/35ff98c7b521e34192c3180bdf806547.jpg" alt="Nico Paz" />
+            <h3>Nico Paz</h3>
+          </article>
+
+          <article class="player-card">
+            <img src="https://i.pinimg.com/736x/14/f7/0a/14f70ace5125cc2ce4424802e3cebb89.jpg" alt="Thiago Almada" />
+            <h3>Thiago Almada</h3>
+          </article>
+        </div>
+
+        <div class="card" style="margin-top: 30px;">
+          <h3>A Squad Built Across Generations</h3>
+          <p>
+            The 2026 team represented a transition in Argentine football.
+            Established stars continued to provide experience while younger
+            players were given greater responsibility. This balance helped
+            Argentina remain competitive deep into the tournament.
+          </p>
+        </div>
+
+        <div class="two-column-grid">
+          <article class="card">
+            <h3>Argentina's 2026 World Cup Squad</h3>
+            <ul>
+              <li>Goalkeepers: Emiliano Martínez, Franco Armani, Gerónimo Rulli</li>
+              <li>Defenders: Cristian Romero, Nicolás Otamendi, Lisandro Martínez, Marcos Acuña, Nahuel Molina, Gonzalo Montiel</li>
+              <li>Midfielders: Rodrigo De Paul, Leandro Paredes, Enzo Fernández, Alexis Mac Allister</li>
+              <li>Forwards: Lionel Messi, Julián Álvarez, Lautaro Martínez, Ángel Di María</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Key Players to Watch</h3>
+            <ul>
+              <li>Lionel Messi — The captain and creative force.</li>
+              <li>Julián Álvarez — Emerging star with a knack for scoring.</li>
+              <li>Enzo Fernández — Midfield dynamo controlling the tempo.</li>
+              <li>Cristian Romero — Defensive rock and leader at the back.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="scaloni" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">04 — The Coach</div>
+          <h2>The Scaloni Era</h2>
+          <p class="lead">
+            Lionel Scaloni became one of the defining figures of Argentina's
+            modern football era, combining tactical discipline with a strong
+            team identity.
+          </p>
+        </div>
+
+        <div class="photo" style="margin-bottom: 30px;">
+          <img
+            src="https://i.pinimg.com/1200x/64/bc/6b/64bc6b14b68f608b0e56f2fd2cb157db.jpg"
+            alt="Lionel Scaloni coaching Argentina"
+          />
+        </div>
+
+        <div class="story-grid">
+          <article class="card">
+            <h3>A Clear Tactical Identity</h3>
+            <p>
+              Argentina's approach mixed possession, pressing, defensive
+              organisation and quick transitions. The team could slow a match
+              down or suddenly increase the tempo.
+            </p>
+            <p>
+              Scaloni's biggest challenge in 2026 was keeping that identity
+              intact while integrating younger players around an experienced
+              core.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Argentina's Football Formula</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="year">01</div>
+                <div><b>Possession</b><br />Build attacks patiently.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="year">02</div>
+                <div><b>Pressing</b><br />Recover the ball quickly.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="year">03</div>
+                <div><b>Organisation</b><br />Protect the team shape.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="year">04</div>
+                <div><b>Transition</b><br />Attack with speed.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">05 — The Road</div>
+          <h2>The Knockout Journey</h2>
+          <p class="lead">
+            Argentina's road to the final included three difficult knockout
+            matches, with two victories coming after extra time.
+          </p>
+        </div>
+
+        <div class="timeline card">
+          <div class="timeline-item">
+            <div class="year">R32</div>
+            <div>
+              <b>Argentina 3–2 Cabo Verde (AET)</b><br />
+              Argentina survived a dramatic extra-time contest.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year">R16</div>
+            <div>
+              <b>Argentina 3–2 Egypt</b><br />
+              Another high-scoring encounter sent Argentina into the
+              quarter-finals.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year">QF</div>
+            <div>
+              <b>Argentina 3–1 Switzerland (AET)</b><br />
+              Argentina again needed extra time to reach the last four.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="semifinal" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">06 — The Semi-Final</div>
+          <h2>Argentina vs England</h2>
+          <p class="lead">
+            In Atlanta, Argentina defeated England 2–1 to book a place in
+            another World Cup final.
+          </p>
+        </div>
+
+        <div class="result">
+          <div>
+            <div class="flag-url">
+              <img src="https://i.pinimg.com/736x/f4/33/5b/f4335b179ac18054aad3c7792f5257fb.jpg" alt="Argentina flag" />
+            </div>
+            <div class="team">Argentina</div>
+          </div>
+
+          <div>
+            <div class="score">2 - 1</div>
+            <small>SEMIFINAL • ATLANTA</small>
+          </div>
+
+          <div>
+            <div class="flag-url">
+              <img src="https://i.pinimg.com/1200x/b7/2f/54/b72f54487d8abcadf4e980c3302aef31.jpg" alt="England flag" />
+            </div>
+            <div class="team">England</div>
+          </div>
+        </div>
+
+        <div class="video-grid" style="margin-top: 30px;">
+          <div class="video-card">
+            <div class="video-icon">▶</div>
+            <div>
+              <h3>Argentina vs England — Highlights</h3>
+              <p>Open a football-news or highlights video in a new tab.</p>
+              <a href="https://www.youtube.com/results?search_query=Argentina+vs+England+2026+World+Cup+semi+final+highlights" target="_blank" rel="noopener">Watch Search Results →</a>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-icon">▶</div>
+            <div>
+              <h3>Post-Match Analysis</h3>
+              <p>Use this card for your preferred news channel or official video.</p>
+              <a href="https://www.youtube.com/results?search_query=Argentina+England+2026+World+Cup+semi+final+analysis" target="_blank" rel="noopener">Find Analysis Videos →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="final" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">07 — The Final</div>
+          <h2>Argentina vs Spain</h2>
+          <p class="lead">
+            After a remarkable journey, Argentina reached the 2026 FIFA World
+            Cup final. Spain stood between the Albiceleste and another trophy.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <div class="photo">
+            <img
+              src="https://images.openai.com/static-rsc-4/j578P7DT_QPThLeab1Cbr1b1seVWCnpzEoe-_MP0xNsjlQb9q7VFBF6r-74uLe5Kv4OTFtk5JMkfbTebr5gUscQGlAMO4vsiZjYeE5idb2OjxJxxDplyzvmgTa01_vHohA5XuFql2Ji36P_C9KXjxa7arf2Nrlhg3CeZ_2kYoFxFSKHz5vcn3P9N2rx5GndQ?purpose=fullsize"
+              alt="Argentina supporters filling a city street"
+            />
+          </div>
+
+          <article class="card">
+            <h3>The Final Dream</h3>
+            <p>
+              The final was closely contested. After 90 minutes, neither side
+              had settled the match, sending the game into extra time.
+            </p>
+
+            <div class="result" style="margin-top: 25px; box-shadow: none;">
+              <div>
+                <div class="flag-url">
+                  <img src="https://i.pinimg.com/736x/c3/c1/74/c3c17451a0fd64ea959a201024cb7529.jpg" alt="Spain flag" />
+                </div>
+                <div class="team">Spain</div>
+              </div>
+
+              <div>
+                <div class="score">1 : 0</div>
+                <small>AFTER EXTRA TIME</small>
+              </div>
+
+              <div>
+                <div class="flag-url">
+                  <img src="https://i.pinimg.com/736x/f4/33/5b/f4335b179ac18054aad3c7792f5257fb.jpg" alt="Argentina flag" />
+                </div>
+                <div class="team">Argentina</div>
+              </div>
+            </div>
+
+            <p>
+              Spain scored the decisive goal and became world champions, while
+              Argentina finished the tournament as runners-up.
+            </p>
+          </article>
+        </div>
+
+        <div class="video-grid" style="margin-top: 30px;">
+          <div class="video-card">
+            <div class="video-icon">▶</div>
+            <div>
+              <h3>World Cup Final — News & Highlights</h3>
+              <p>Use this section for an official or licensed final-match video.</p>
+              <a href="https://www.youtube.com/results?search_query=Spain+Argentina+2026+World+Cup+final+highlights" target="_blank" rel="noopener">Find Final Videos →</a>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-icon">▶</div>
+            <div>
+              <h3>Argentina After the Final</h3>
+              <p>Post-match reactions, interviews and tournament analysis.</p>
+              <a href="https://www.youtube.com/results?search_query=Argentina+2026+World+Cup+final+reaction" target="_blank" rel="noopener">Find Reaction Videos →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-note">
+          <b>Project tip:</b> Replace these search links with official or
+          licensed video URLs before publishing.
+        </div>
+      </div>
+    </section>
+
+    <section id="result" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">08 — The End of the Dream</div>
+          <h2>From Champions to Runners-Up</h2>
+          <p class="lead">
+            Argentina did not complete the back-to-back World Cup triumph, but
+            the 2026 campaign produced another deep tournament run.
+          </p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>🏆 2022</strong>
+            <span>World Champions</span>
+          </div>
+          <div class="stat">
+            <strong>🏆 2024</strong>
+            <span>Copa América Champions</span>
+          </div>
+          <div class="stat">
+            <strong>🥈 2026</strong>
+            <span>World Cup Runners-Up</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 25px;">
+          <h3>The Bigger Picture</h3>
+          <p>
+            The 2026 tournament can be viewed as a transition point.
+            Argentina's experienced generation faced a younger group of players
+            increasingly ready to carry the national team forward.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="legacy" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">09 — Legacy</div>
+          <h2>The Albiceleste Will Rise Again</h2>
+          <p class="lead">
+            A final defeat cannot erase the achievements of an era that brought
+            Argentina back to the summit of world football.
+          </p>
+        </div>
+
+        <article class="card">
+          <p>
+            Argentina's dream of winning consecutive World Cups ended in the
+            final. Yet the campaign also demonstrated the consistency of a
+            national team capable of reaching the biggest stage again and again.
+          </p>
+
+          <p>
+            The next generation now inherits an enormous legacy. Players will
+            change, coaches will change and eventually new leaders will wear the
+            captain's armband — but the passion of Argentine football will
+            remain.
+          </p>
+
+          <div class="quote">
+            “The names may change. The players may change. But the passion will
+            remain.”
+          </div>
+
+          <h3>ARGENTINA NEVER GIVE UP</h3>
+        </article>
+      </div>
+    </section>
+
+    <section id="references" class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">10 — References</div>
+          <h2>Sources & Media</h2>
+          <p class="lead">
+            Reference section for know more about the Argentina 2026 World Cup.
+          </p>
+        </div>
+
+        <div class="references card">
+          <a href="https://www.fifa.com/" target="_blank" rel="noopener">FIFA — Official World Football Website ↗</a>
+          <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" target="_blank" rel="noopener">FIFA World Cup 2026 ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Argentina+2026+World+Cup+news" target="_blank" rel="noopener">YouTube — Argentina 2026 News & Videos ↗</a>
+          <a href="https://www.youtube.com/results?search_query=Argentina+2026+World+Cup+highlights" target="_blank" rel="noopener">YouTube — Argentina 2026 Highlights ↗</a>
+        </div>
+
+        <div class="video-note">
+          <b>Credits:</b> All images and videos are used for educational and informational purposes.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>ALBICELESTE24</h3>
+        <p>
+        Documenting Argentina's 2026 World Cup journey.
+        </p>
+        <p>© 2026 Argentina World Cup </p>
+      </div>
+
+      <div>
+        <h3>Sections</h3>
+        <ul>
+          <li><a href="#history">History</a></li>
+          <li><a href="#messi">Messi</a></li>
+          <li><a href="#squad">Squad</a></li>
+          <li><a href="#journey">Journey</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Final</h3>
+        <ul>
+          <li><a href="#semifinal">Semi-Final</a></li>
+          <li><a href="#final">Final</a></li>
+          <li><a href="#legacy">Legacy</a></li>
+          <li><a href="#references">References</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <script src="music-player.js" defer></script>
+</body>
+</html>

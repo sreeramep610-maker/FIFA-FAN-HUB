@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Match Schedule - FIFA World Cup Fan Hub</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../music-player.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #082653;
+      overflow-x: hidden;
+    }
+
+    .hero-sub {
+      min-height: 500px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(0, 20, 47, .62), rgba(0, 20, 47, .72)),
+        url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1800");
+      background-size: cover;
+      background-position: center;
+    }
+
+    nav {
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      min-height: 75px;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      background: rgba(0, 20, 47, .58);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 20px;
+      z-index: 10;
+    }
+
+    .logo {
+      color: white;
+      font-size: 26px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #ffd700;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: .3s;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #ffd700;
+    }
+
+    .ticket-btn {
+      border: none;
+      border-radius: 50px;
+      padding: 12px 24px;
+      background: #ffd700;
+      color: #111;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hero-sub-content {
+      position: relative;
+      z-index: 2;
+      margin-top: 60px;
+      padding: 20px;
+    }
+
+    .hero-sub-content h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .hero-sub-content p {
+      margin-top: 18px;
+      font-size: clamp(16px, 2vw, 22px);
+      color: rgba(255, 255, 255, .9);
+    }
+
+    .matches-section {
+      padding: 75px 7%;
+      background: #f5f7fb;
+    }
+
+    .page-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .page-heading h2 {
+      font-size: 34px;
+      font-weight: 800;
+      color: #082653;
+    }
+
+    .page-heading p {
+      color: #777;
+      margin-top: 8px;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 55px;
+    }
+
+    .filters button {
+      border: none;
+      border-radius: 50px;
+      padding: 12px 24px;
+      background: white;
+      color: #082653;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, .08);
+      transition: .3s;
+    }
+
+    .filters button:hover,
+    .filters button.active {
+      background: #082653;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .match-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .match-card {
+      background: white;
+      border-radius: 25px;
+      padding: 24px;
+      min-height: 405px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, .07);
+      border: 1px solid rgba(0, 0, 0, .04);
+      transition: .3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .match-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, .13);
+    }
+
+    .match-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 17px;
+      border-bottom: 1px solid #edf0f4;
+    }
+
+    .stage {
+      color: #0d4d9c;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+
+    .status {
+      padding: 5px 10px;
+      border-radius: 30px;
+      background: #eaf8ef;
+      color: #239653;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .match-teams {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      padding: 25px 0 20px;
+    }
+
+    .team {
+      text-align: center;
+    }
+
+    .team-flag {
+      width: 76px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 9px;
+      display: block;
+      margin: 0 auto 13px;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, .14);
+    }
+
+    .team h3 {
+      color: #082653;
+      font-size: 16px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .vs {
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .match-info {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 15px;
+      background: #f1f3f8;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .match-info strong {
+      color: #222;
+    }
+
+    .highlight-btn {
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #ffd700;
+      color: #111;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .highlight-btn:hover {
+      background: #e6c200;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 55px 20px;
+      background: #00142f;
+      color: white;
+      text-align: center;
+    }
+
+    footer h2 {
+      font-size: 24px;
+    }
+
+    footer p {
+      margin-top: 10px;
+      color: rgba(255, 255, 255, .7);
+    }
+
+    @media (max-width: 1150px) {
+      .match-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .menu {
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        width: 94%;
+        padding: 0 18px;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .match-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .matches-section {
+        padding: 55px 5%;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .logo {
+        font-size: 21px;
+      }
+
+      .ticket-btn {
+        padding: 10px 15px;
+        font-size: 12px;
+      }
+
+      .filters button {
+        padding: 10px 16px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero-sub">
+    <nav>
+      <div class="logo">🏆 FIFA<span>HUB</span></div>
+
+      <div class="menu">
+        <a href="../index.html">Home</a>
+        <a href="../teams/teams.html">Teams</a>
+        <a href="matches.html" class="active">Matches</a>
+        <a href="../players/players.html">Players</a>
+        <a href="../stadium.html">Stadiums</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../news.html">News</a>
+      </div>
+
+      <a href="../index.html">
+        <button class="ticket-btn">Buy Tickets</button>
+      </a>
+    </nav>
+
+    <div class="hero-sub-content">
+      <h1>Match Schedule</h1>
+      <p>Track all 104 fixtures across the 16 host cities</p>
+    </div>
+  </header>
+
+  <main class="matches-section">
+    <div class="page-heading">
+      <h2>FIFA World Cup Matches</h2>
+      <p>Browse matches by tournament stage</p>
+    </div>
+
+    <div class="filters">
+      <button class="active" onclick="filterMatches('all', this)">All Matches</button>
+      <button onclick="filterMatches('group', this)">Group Stage</button>
+      <button onclick="filterMatches('quarter', this)">Quarter Finals</button>
+      <button onclick="filterMatches('semi', this)">Semi Finals</button>
+      <button onclick="filterMatches('final', this)">Finals</button>
+    </div>
+
+    <div class="match-grid" id="matchGrid"></div>
+  </main>
+
+  <footer>
+    <h2>FIFA World Cup Fan Hub</h2>
+    <p>The Ultimate Football Experience</p>
+  </footer>
+
+  <script>
+    const matches = [
+      {
+        stage: "group",
+        label: "Group A • Match 1",
+        home: "Mexico",
+        away: "South Africa",
+        date: "Jun 12, 2026",
+        venue: "Estadio Azteca Stadium",
+        homeFlag: "mx",
+        awayFlag: "za",
+        link: "https://youtu.be/PmevGCkUtM8?si=_ElXoV0IlHSV-K71",
+        openLinks: [
+          "https://youtube.com/playlist?list=PLGBvBP7xAG5E&si=GN30e6A-4KYjFpLR"
+        ]
+      },
+      {
+        stage: "group",
+        label: "Group B • Match 3",
+        home: "Canada",
+        away: "Bosnia and Herzegovina",
+        date: "Jun 13, 2026",
+        venue: "BMO Field Stadium",
+        homeFlag: "ca",
+        awayFlag: "ba",
+        link: "https://youtu.be/w-_rY5morQY?si=uJXbKC6iyQ6rmvCS",
+        openLinks: [
+          "https://youtube.com/playlist?list=PLUy1i1wCuGVI&si=I1Kmihr7hjHZ8zW2"
+        ]
+      },
+      {
+        stage: "group",
+        label: "Group D • Match 4",
+        home: "USA",
+        away: "Paraguay",
+        date: "Jun 13, 2026",
+        venue: "SoFi Stadium",
+        homeFlag: "us",
+        awayFlag: "py",
+        link: "https://youtu.be/0PVo3bk-TMk?si=YPi-Hy-PmPgi9CAx",
+        openLinks: [
+          "https://youtube.com/playlist?list=PLaxEaGypX1Cg&si=jABVvrZu1UGS6bkq"
+        ]
+      },
+      {
+        stage: "group",
+        label: "Group C • Match 6",
+        home: "Brazil",
+        away: "Morocco",
+        date: "Jun 14, 2026",
+        venue: "MetLife Stadium",
+        homeFlag: "br",
+        awayFlag: "ma",
+        link: "https://youtu.be/ECnK7UzAjIs?si=rFAoYjL4erlaviIm"
+      },
+      {
+        stage: "group",
+        label: "Group E • Match 9",
+        home: "Germany",
+        away: "Curaçao",
+        date: "Jun 14, 2026",
+        venue: "NRG Stadium",
+        homeFlag: "de",
+        awayFlag: "cw",
+        link: "https://youtu.be/B6-Z5ul2ccQ?si=HPfGzWUifb_kJRTQ"
+      },
+      {
+        stage: "group",
+        label: "Group F • Match 10",
+        home: "Netherlands",
+        away: "Japan",
+        date: "Jun 15, 2026",
+        venue: "AT&T Stadium",
+        homeFlag: "nl",
+        awayFlag: "jp",
+        link: "https://youtu.be/r8SvHZxALQs?si=00kEuH4KNGZ_VyAx"
+      },
+      {
+        stage: "group",
+        label: "Group H • Match 13",
+        home: "Spain",
+        away: "Cabo Verde",
+        date: "Jun 15, 2026",
+        venue: "Mercedes-Benz Stadium",
+        homeFlag: "es",
+        awayFlag: "cv",
+        link: "https://youtu.be/W9Z4ER9oX0k?si=3xWNU6Y5nMtDb8sT"
+      },
+      {
+        stage: "group",
+        label: "Group G • Match 14",
+        home: "Belgium",
+        away: "Egypt",
+        date: "Jun 16, 2026",
+        venue: "Lumen Field Stadium",
+        homeFlag: "be",
+        awayFlag: "eg",
+        link: "https://youtu.be/i8sD2Aea9_M?si=qrSKIZVBIvAasW7f"
+      },
+      {
+        stage: "group",
+        label: "Group I • Match 17",
+        home: "France",
+        away: "Senegal",
+        date: "Jun 17, 2026",
+        venue: "MetLife Stadium",
+        homeFlag: "fr",
+        awayFlag: "sn",
+        link: "https://youtu.be/n3JDGlOwMJ4?si=sMPTzKPfHt3Y8HQ5"
+      },
+      {
+        stage: "group",
+        label: "Group J • Match 19",
+        home: "Argentina",
+        away: "Algeria",
+        date: "Jun 17, 2026",
+        venue: "Arrowhead Stadium",
+        homeFlag: "ar",
+        awayFlag: "dz",
+        link: "https://youtu.be/JH_WRKTCPK4?si=lQ5incLUWz-daPWz"
+      },
+      {
+        stage: "group",
+        label: "Group K • Match 21",
+        home: "Portugal",
+        away: "DR Congo",
+        date: "Jun 17, 2026",
+        venue: "NRG Stadium",
+        homeFlag: "pt",
+        awayFlag: "cd",
+        link: "https://youtu.be/fJrctBM0poE?si=hWTZS1FwenBkrooG"
+      },
+      {
+        stage: "group",
+        label: "Group L • Match 22",
+        home: "England",
+        away: "Croatia",
+        date: "Jun 18, 2026",
+        venue: "AT&T Stadium",
+        homeFlag: "gb",
+        awayFlag: "hr",
+        link: "https://youtu.be/ynqGWHJPkuQ?si=hs2nNMQPcEcg8xJo"
+      },
+      {
+        stage: "quarter",
+        label: "Quarterfinals • Match 1",
+        home: "France",
+        away: "Morocco",
+        date: "July 10, 2026",
+        venue: "Gillette Stadium",
+        homeFlag: "fr",
+        awayFlag: "ma",
+        link: "https://youtu.be/Lfo49ZbV4WU?si=yQWmnPa_uH-9dDcn"
+      },
+      {
+        stage: "quarter",
+        label: "Quarterfinals • Match 2",
+        home: "Spain",
+        away: "Belgium",
+        date: "July 11, 2026",
+        venue: "SoFi Stadium",
+        homeFlag: "es",
+        awayFlag: "be",
+        link: "https://youtu.be/VHoctq0AOg8?si=PSeIJPMJRnHuUJJd"
+      },
+      {
+        stage: "quarter",
+        label: "Quarterfinals • Match 3",
+        home: "Norway",
+        away: "England",
+        date: "July 12, 2026",
+        venue: "Hard Rock Stadium",
+        homeFlag: "no",
+        awayFlag: "gb",
+        link: "https://youtu.be/PnFUiq8m9os?si=J00EZf8Jm1m85Qvf"
+      },
+      {
+        stage: "quarter",
+        label: "Quarterfinals • Match 4",
+        home: "Argentina",
+        away: "Switzerland",
+        date: "July 12, 2026",
+        venue: "Arrowhead Stadium",
+        homeFlag: "ar",
+        awayFlag: "ch",
+        link: "https://youtu.be/zZxxDbLxEi4?si=wKImcnpgP6JvTOQg"
+      },
+      {
+        stage: "semi",
+        label: "Semi-Finals • Match 1",
+        home: "France",
+        away: "Spain",
+        date: "July 15, 2026",
+        venue: "AT&T Stadium",
+        homeFlag: "fr",
+        awayFlag: "es",
+        link: "https://youtu.be/_cV8QcKp3GU?si=PsFHMD7nAHj7kvyt"
+      },
+      {
+        stage: "semi",
+        label: "Semi-Finals • Match 2",
+        home: "England",
+        away: "Argentina",
+        date: "July 16, 2026",
+        venue: "Mercedes-Benz Stadium",
+        homeFlag: "gb",
+        awayFlag: "ar",
+        link: "https://youtu.be/oB2mK8eJli4?si=J9TQXhkAws3s9TB2"
+      },
+      {
+        stage: "final",
+        label: "Final • Match 1",
+        home: "Spain",
+        away: "Argentina",
+        date: "July 20, 2026",
+        venue: "MetLife Stadium",
+        homeFlag: "es",
+        awayFlag: "ar",
+        link: "https://youtu.be/-z3JQk3lSmc?si=CbANLkTYow8o59O5",
+        trophyLink: "https://youtu.be/5OtG__dhtQ0?si=Y2QfV_a2wDeKZgRi",
+        closeLinks: [
+          "https://youtube.com/playlist?list=PLLMeQeWO1LLo&si=e4tHr0dzC5QnMouF"
+        ],
+        halftimeLinks: [
+          "https://youtube.com/playlist?list=PLGzheOzIVpHk&si=qkx68jCRuKLHIQCH"
+        ]
+      }
+    ];
+
+    const matchGrid = document.getElementById("matchGrid");
+
+    function createLinks(links, text) {
+      if (!Array.isArray(links) || links.length === 0) {
+        return "";
+      }
+
+      return links.map((url, index) => `
+        <a href="${url}" target="_blank" rel="noopener noreferrer">
+          <button class="highlight-btn">
+            ${text} ${links.length > 1 ? index + 1 : ""}
+          </button>
+        </a>
+      `).join("");
+    }
+
+    function createMatchCard(match) {
+      const homeFlag = `https://flagcdn.com/w160/${match.homeFlag}.png`;
+      const awayFlag = `https://flagcdn.com/w160/${match.awayFlag}.png`;
+
+      return `
+        <article class="match-card" data-stage="${match.stage}">
+          <div class="match-top">
+            <span class="stage">${match.label}</span>
+            <span class="status">Finished</span>
+          </div>
+
+          <div class="match-teams">
+            <div class="team">
+              <img
+                class="team-flag"
+                src="${homeFlag}"
+                alt="${match.home} flag"
+              >
+              <h3>${match.home}</h3>
+            </div>
+
+            <div class="vs">VS</div>
+
+            <div class="team">
+              <img
+                class="team-flag"
+                src="${awayFlag}"
+                alt="${match.away} flag"
+              >
+              <h3>${match.away}</h3>
+            </div>
+          </div>
+
+          <div class="match-info">
+            <div><strong>Date:</strong> ${match.date}</div>
+            <div><strong>Venue:</strong> ${match.venue}</div>
+          </div>
+
+          <a href="${match.link}" target="_blank" rel="noopener noreferrer">
+            <button class="highlight-btn">See Match Highlight</button>
+          </a>
+
+          ${createLinks(match.openLinks, "Watch Opening Ceremony")}
+          ${createLinks(match.closeLinks, "Watch Closing Ceremony")}
+          ${createLinks(match.halftimeLinks, "Watch Halftime Show")}
+
+          ${
+            match.trophyLink
+              ? `
+                <a href="${match.trophyLink}" target="_blank" rel="noopener noreferrer">
+                  <button class="highlight-btn">
+                    Watch Trophy Ceremony
+                  </button>
+                </a>
+              `
+              : ""
+          }
+        </article>
+      `;
+    }
+
+    function showMatches(stage = "all") {
+      const filteredMatches =
+        stage === "all"
+          ? matches
+          : matches.filter(match => match.stage === stage);
+
+      matchGrid.innerHTML = filteredMatches
+        .map(createMatchCard)
+        .join("");
+    }
+
+    function filterMatches(stage, button) {
+      document.querySelectorAll(".filters button").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      showMatches(stage);
+    }
+
+    showMatches();
+  </script>
+<script src="../music-player.js" defer></script>
+</body>
+</html>

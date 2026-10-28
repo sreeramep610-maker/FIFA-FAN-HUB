@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FIFA World Cup Fan Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="music-player.css">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f7fb;
+overflow-x:hidden;
+}
+
+.hero{
+height:100vh;
+position:relative;
+background:
+linear-gradient(rgba(0,0,0,.35),
+rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1800");
+background-size:cover;
+background-position:center;
+}
+
+/* NAVBAR */
+
+nav{
+position:absolute;
+top:25px;
+width:90%;
+height:75px;
+background:rgba(58,74,15,.55);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.2);
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+}
+
+.logo{
+font-size:26px;
+font-weight:800;
+color:white;
+text-decoration:none;
+}
+.logo span{ color:#FFD700; }
+
+.menu{ display:flex; gap:30px; }
+
+.menu a{
+color:white;
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+}
+.menu a:hover,
+.menu .active{ color:#FFD700; }
+
+.ticket-btn{
+padding:12px 25px;
+border-radius:50px;
+border:none;
+font-weight:700;
+cursor:pointer;
+background:#FFD700;
+}
+
+.hero-content{
+position:absolute;
+left:8%;
+top:50%;
+transform:translateY(-50%);
+color:white;
+}
+
+.hero-content h1{
+font-size:140px;
+font-weight:900;
+line-height:.85;
+letter-spacing:-5px;
+}
+
+.hero-content p{
+margin-top:25px;
+font-size:24px;
+font-weight:600;
+max-width:500px;
+}
+
+.hero-buttons{
+margin-top:35px;
+display:flex;
+gap:20px;
+}
+
+.btn{
+padding:16px 30px;
+border-radius:50px;
+text-decoration:none;
+font-weight:700;
+}
+
+.primary{
+background:#FFD700;
+color:black;
+}
+
+.secondary{
+border:2px solid white;
+color:white;
+}
+
+.booking-card{
+
+position:absolute;
+
+bottom:-130px;
+left:50%;
+transform:translateX(-50%);
+
+width:75%;
+
+background:white;
+padding:25px;
+
+border-radius:25px;
+
+box-shadow:
+0 30px 60px rgba(0,0,0,.15);
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr 1fr auto;
+
+gap:20px;
+
+z-index:10;
+}
+
+.input-box{
+display:flex;
+flex-direction:column;
+}
+
+.input-box label{
+font-size:13px;
+color:#666;
+margin-bottom:8px;
+}
+
+.input-box input,
+.input-box select{
+
+padding:15px;
+border:none;
+background:#f1f3f8;
+border-radius:15px;
+
+}
+
+.search-btn{
+
+padding:15px 35px;
+border:none;
+border-radius:15px;
+background:#001f54;
+color:white;
+font-weight:700;
+cursor:pointer;
+
+}
+
+section{
+padding:150px 8% 80px;
+}
+
+.section-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+}
+
+.section-top h2{
+font-size:48px;
+line-height:1.1;
+max-width:500px;
+}
+
+.view-btn{
+padding:14px 25px;
+border-radius:50px;
+border:2px solid black;
+background:none;
+cursor:pointer;
+}
+
+.cards{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.card{
+height:420px;
+border-radius:30px;
+overflow:hidden;
+position:relative;
+cursor:pointer;
+}
+
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s;
+}
+
+.card:hover img{
+transform:scale(1.08);
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:
+linear-gradient(
+transparent,
+rgba(0,0,0,.75)
+);
+}
+
+.card-info{
+position:absolute;
+bottom:25px;
+left:25px;
+color:white;
+}
+
+.card-info h3{
+font-size:28px;
+}
+
+.card-info p{
+opacity:.8;
+}
+
+.stats{
+
+background:#071427;
+color:white;
+padding:120px 8%;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+}
+
+.stat{
+text-align:center;
+}
+
+.stat h1{
+font-size:70px;
+color:#FFD700;
+}
+
+.stat p{
+font-size:18px;
+}
+
+footer{
+background:#00142f;
+color:white;
+padding:60px;
+text-align:center;
+}
+
+@media(max-width:1000px){
+
+.hero-content h1{
+font-size:80px;
+}
+
+.booking-card{
+grid-template-columns:1fr;
+bottom:-220px;
+}
+
+.menu{
+display:none;
+}
+
+section{
+padding-top:280px;
+}
+
+}
+.ticket-popup{
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.8);
+
+display:none;
+justify-content:center;
+align-items:center;
+
+z-index:99999;
+
+backdrop-filter:blur(8px);
+
+}
+
+.premium-pass{
+
+width:400px;
+
+background:
+linear-gradient(
+135deg,
+#001f54,
+#003b8e
+);
+
+color:white;
+
+border-radius:30px;
+
+padding:20px;
+
+position:relative;
+
+overflow:hidden;
+
+box-shadow:
+0 20px 70px rgba(0,0,0,.5);
+
+}
+
+.premium-pass::before{
+
+content:"";
+
+position:absolute;
+
+top:-60px;
+right:-60px;
+
+width:170px;
+height:170px;
+
+background:#FFD700;
+
+border-radius:50%;
+
+opacity:.2;
+
+}
+
+.close-pass{
+
+position:absolute;
+right:20px;
+top:15px;
+
+font-size:28px;
+
+cursor:pointer;
+
+}
+
+.pass-header{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.cup-logo{
+display:flex;
+justify-content:center;
+align-items:center;
+margin-bottom:15px;
+}
+
+.cup-logo img{
+width:90px;
+height:auto;
+object-fit:contain;
+filter:
+drop-shadow(0 8px 20px rgba(255,215,0,.4));
+transition:.4s;
+}
+
+.cup-logo img:hover{
+transform:scale(1.05);
+}
+
+.pass-header h2{
+
+font-size:24px;
+
+}
+
+.pass-header p{
+
+opacity:.8;
+
+}
+
+.match-title{
+
+font-size:20px;
+
+font-weight:800;
+
+text-align:center;
+
+margin-bottom:25px;
+
+color:#FFD700;
+
+}
+
+.pass-details{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:3px;
+
+margin-bottom:20px;
+
+}
+
+.pass-details div{
+
+background:
+rgba(255,255,255,.08);
+
+padding:8px;
+
+border-radius:10px;
+
+}
+
+.pass-details span{
+
+display:block;
+
+font-size:10px;
+
+opacity:.7;
+
+}
+
+.pass-details strong{
+
+font-size:12px;
+
+}
+
+#qrCode{
+
+display:flex;
+
+justify-content:center;
+
+margin:20px 0;
+
+}
+
+.download-btn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:#FFD700;
+
+font-weight:500;
+
+cursor:pointer;
+
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+
+<nav>
+
+<div class="logo">
+🏆 FIFA<span>HUB</span>
+</div>
+
+<div class="menu">
+    <a href="index.html" class="active">Home</a>
+    <a href="teams/teams.html">Teams</a>
+    <a href="matches/matches.html">Matches</a>
+    <a href="players/players.html">Players</a>
+    <a href="stadium.html">Stadiums</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="news.html">News</a>
+</div>
+
+<button class="ticket-btn" id="buyTickets">
+Buy Tickets
+</button>
+
+</nav>
+
+<div class="hero-content">
+
+<h1>
+WORLD<br>
+CUP
+</h1>
+
+<p>
+Experience the Greatest Football Tournament on Earth.
+</p>
+
+<div class="hero-buttons">
+
+<a href="news.html" class="btn primary">
+Explore
+</a>
+
+<a href="matches/matches.html" class="btn secondary">
+Live Matches
+</a>
+
+</div>
+
+</div>
+
+<div class="booking-card">
+
+<div class="input-box">
+<label>Select Home Team</label>
+<select>
+<option>Australia</option>
+<option>Iraq</option>
+<option>Iran</option>
+<option>Japan</option>
+<option>Jordan</option>  
+<option>South Korea</option>
+<option>Qatar</option>
+<option>Saudi Arabia</option>    
+<option>Uzbekistan</option>   
+<option>Algeria</option>
+<option>Cape Verde</option>
+<option>DR Congo</option>   
+<option>Ivory Coast</option>
+<option>Egypt</option>
+<option>Ghana</option>
+<option>Morocco</option>
+<option>South Africa</option>
+<option>Senegal</option>
+<option>Tunisia</option>    
+<option>Canada</option>
+<option>Mexico</option>
+<option>United States</option>
+<option>Curacao</option>
+<option>Haiti</option>
+<option>Panama</option>
+<option>Argentina</option>
+<option>Brazil</option>
+<option>Colombia</option>
+<option>Ecuador</option>
+<option>Paraguay</option>
+<option>Uruguay</option>
+<option>New Zealand</option>
+<option>Austria</option>
+<option>Belgium</option> 
+<option>Croatia</option>
+<option>Czechia</option>     
+<option>England</option>
+<option>Turkey</option>
+<option>France</option>
+<option>Germany</option>
+<option>Netherlands</option>
+<option>Scotland</option>
+<option>Norway</option>
+<option>Portugal</option>
+<option>Spain</option>
+<option>Sweden</option>   
+<option>Switzerland</option>
+<option>Bosnia & Herzegovina</option>
+</select>
+</div>
+
+<div class="input-box">
+<label>Select Away Team</label>
+<select>
+<option>Australia</option>
+<option>Iraq</option>
+<option>Iran</option>
+<option>Japan</option>
+<option>Jordan</option>  
+<option>South Korea</option>
+<option>Qatar</option>
+<option>Saudi Arabia</option>    
+<option>Uzbekistan</option>   
+<option>Algeria</option>
+<option>Cape Verde</option>
+<option>DR Congo</option>   
+<option>Ivory Coast</option>
+<option>Egypt</option>
+<option>Ghana</option>
+<option>Morocco</option>
+<option>South Africa</option>
+<option>Senegal</option>
+<option>Tunisia</option>    
+<option>Canada</option>
+<option>Mexico</option>
+<option>United States</option>
+<option>Curacao</option>
+<option>Haiti</option>
+<option>Panama</option>
+<option>Argentina</option>
+<option>Brazil</option>
+<option>Colombia</option>
+<option>Ecuador</option>
+<option>Paraguay</option>
+<option>Uruguay</option>
+<option>New Zealand</option>
+<option>Austria</option>
+<option>Belgium</option> 
+<option>Croatia</option>
+<option>Czechia</option>     
+<option>England</option>
+<option>Turkey</option>
+<option>France</option>
+<option>Germany</option>
+<option>Netherlands</option>
+<option>Scotland</option>
+<option>Norway</option>
+<option>Portugal</option>
+<option>Spain</option>
+<option>Sweden</option>   
+<option>Switzerland</option>
+<option>Bosnia & Herzegovina</option>
+</select>
+</div>
+
+<div class="input-box">
+<label>Match Date</label>
+<input type="date">
+</div>
+
+<div class="input-box">
+<label>Venue</label>
+<select>
+<option>MetLife Stadium</option>
+<option>SoFi Stadium</option>
+<option>AT&T Stadium</option>
+<option>Mercedes-Benz Stadium</option>
+<option>Lincoln Financial Field</option>
+<option>Lumen Field</option>
+<option>Levi's Stadium</option>
+<option>NRG Stadium</option>
+<option>Arrowhead Stadium</option>
+<option>Hard Rock Stadium</option>
+<option>Gillette Stadium</option>
+<option>BC Place</option>
+</option>BMO Field</option>
+<option>Estadio Azteca</option>
+<option>Estadio BBVA</option>
+<option>Estadio Akro</option>
+</select>
+</div>
+
+<button class="search-btn" id="bookMatch">
+Book Match
+</button>
+
+</div>
+
+</header>
+
+<section>
+
+<div class="section-top">
+
+<h2>
+Your Journey To The FIFA World Cup Starts Here
+</h2>
+
+<button class="view-btn">
+<li> <a href="TEAMS/teams.html">All Teams →</a> </li>
+</button>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="https://i.pinimg.com/1200x/4e/f1/bf/4ef1bfa23ec590cf87921991b78ed2a4.jpg">
+
+<div class="overlay"></div>
+
+<div class="card-info">
+<h3>Brazil</h3>
+<p>5 Time Champions</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://i.pinimg.com/1200x/1c/d0/fc/1cd0fc8fb595a7a749d76505e0df6447.jpg">
+
+<div class="overlay"></div>
+
+<div class="card-info">
+<h3>Argentina</h3>
+<p>World Champions</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="https://i.pinimg.com/1200x/00/e5/be/00e5be0c12837b7e100c5f7b38383d48.jpg">
+
+<div class="overlay"></div>
+
+<div class="card-info">
+<h3>France</h3>
+<p>Tournament Favorites</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat">
+<h1>48</h1>
+<p>National Teams</p>
+</div>
+
+<div class="stat">
+<h1>104</h1>
+<p>Matches</p>
+</div>
+
+<div class="stat">
+<h1>16</h1>
+<p>Host Cities</p>
+</div>
+
+<div class="stat">
+<h1>3M+</h1>
+<p>Fans Expected</p>
+</div>
+
+</section>
+
+<footer>
+
+<h2>FIFA World Cup Fan Hub</h2>
+
+<br>
+
+<p>
+The Ultimate Football Experience
+</p>
+
+</footer>
+<!-- PREMIUM FIFA PASS -->
+
+<div class="ticket-popup" id="ticketPopup">
+
+<div class="premium-pass" id="premiumPass">
+
+<span class="close-pass">&times;</span>
+
+<div class="pass-header">
+
+<div class="cup-logo">
+<img src="images/2026 logo.jpg" alt="FIFA Trophy">
+</div>
+
+<h2>FIFA WORLD CUP 2026</h2>
+
+<p>Official Match Pass</p>
+
+</div>
+
+<div class="pass-body">
+
+<div class="match-title" id="matchTitle">
+Brazil vs Argentina
+</div>
+
+<div class="pass-details">
+
+<div>
+<span>Date</span>
+<strong id="passDate"></strong>
+</div>
+
+<div>
+<span>Venue</span>
+<strong id="passVenue"></strong>
+</div>
+
+<div>
+<span>Seat</span>
+<strong id="seatNo"></strong>
+</div>
+
+<div>
+<span>Pass ID</span>
+<strong id="passId"></strong>
+</div>
+
+</div>
+
+<div id="qrCode"></div>
+
+</div>
+
+<button id="downloadPass" class="download-btn">
+Download Match Pass
+</button>
+
+</div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+
+window.addEventListener("scroll",()=>{
+
+const nav=document.querySelector("nav");
+
+if(window.scrollY>50){
+nav.style.background="rgba(0,20,50,.85)";
+}
+else{
+nav.style.background="rgba(255,255,255,.08)";
+}
+
+});
+
+</script>
+
+<script>
+
+const buyBtn =
+document.getElementById("buyTickets");
+
+buyBtn.addEventListener("click",()=>{
+
+document
+.querySelector(".booking-card")
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+const popup =
+document.getElementById("ticketPopup");
+
+document
+.getElementById("bookMatch")
+.addEventListener("click",()=>{
+
+const home =
+document.querySelectorAll("select")[0].value;
+
+const away =
+document.querySelectorAll("select")[1].value;
+
+const date =
+document.querySelector("input[type='date']").value;
+
+const venue =
+document.querySelectorAll("select")[2].value;
+
+if(home===away){
+
+alert(
+"Please select different teams."
+);
+
+return;
+
+}
+
+if(date===""){
+
+alert(
+"Please choose a date."
+);
+
+return;
+
+}
+
+const passId =
+"FIFA-" +
+Math.floor(
+100000+
+Math.random()*900000
+);
+
+const seat =
+String.fromCharCode(
+65+
+Math.floor(Math.random()*6)
+)
++
+Math.floor(
+10+
+Math.random()*90
+);
+
+document
+.getElementById("matchTitle")
+.innerHTML =
+home+" vs "+away;
+
+document
+.getElementById("passDate")
+.innerHTML =
+date;
+
+document
+.getElementById("passVenue")
+.innerHTML =
+venue;
+
+document
+.getElementById("seatNo")
+.innerHTML =
+seat;
+
+document
+.getElementById("passId")
+.innerHTML =
+passId;
+
+popup.style.display="flex";
+
+document
+.getElementById("qrCode")
+.innerHTML="";
+
+new QRCode(
+
+document.getElementById("qrCode"),
+
+{
+
+text:
+`
+${passId}
+${home} vs ${away}
+${date}
+${venue}
+Seat:${seat}
+`,
+
+width:120,
+height:120,
+
+}
+
+);
+
+});
+
+document
+.querySelector(".close-pass")
+.addEventListener("click",()=>{
+
+popup.style.display="none";
+
+});
+
+document.getElementById("downloadPass").addEventListener("click", async () => {
+
+    try {
+
+        const canvas = await html2canvas(
+            document.getElementById("premiumPass"),
+            {
+                scale: 2,
+                useCORS: true,
+                logging: true
+            }
+        );
+
+        const link = document.createElement("a");
+        link.download = "FIFA_Pass.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+
+    } catch(err) {
+
+        console.error("DOWNLOAD ERROR:", err);
+        alert("Unable to download pass.");
+
+    }
+
+});
+
+</script>
+<script src="music-player.js" defer></script>
+</body>
+</html>

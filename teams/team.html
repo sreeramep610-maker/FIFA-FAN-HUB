@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FIFA Fan Hub | Team Profile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<script src="teams-data.js"></script>
+<link rel="stylesheet" href="../music-player.css">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#081223;
+color:white;
+overflow-x:hidden;
+}
+
+nav{
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+}
+
+.logo{
+font-size:28px;
+font-weight:800;
+}
+
+.logo span{
+color:#FFD700;
+}
+
+.back-btn{
+text-decoration:none;
+background:#FFD700;
+color:#000;
+padding:12px 25px;
+border-radius:30px;
+font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+height:60vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+background:
+linear-gradient(rgba(0,0,0,.55),
+rgba(0,0,0,.8)),
+url("https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1800");
+
+background-size:cover;
+background-position:center;
+}
+
+.hero-content h1{
+font-size:90px;
+font-weight:800;
+}
+
+.hero-content p{
+font-size:22px;
+opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+padding:80px 8%;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(350px,1fr));
+gap:30px;
+}
+
+/* CARD */
+
+.card{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,.08);
+padding:30px;
+border-radius:25px;
+}
+
+.card h2{
+margin-bottom:20px;
+color:#FFD700;
+}
+
+/* INFO */
+
+.info{
+line-height:2;
+font-size:15px;
+}
+
+/* TITLES */
+
+.timeline{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.year{
+background:#FFD700;
+color:black;
+padding:10px 20px;
+border-radius:50px;
+font-weight:700;
+}
+
+/* LISTS */
+
+.list{
+display:grid;
+gap:12px;
+}
+
+.list div{
+background:rgba(255,255,255,.08);
+padding:12px 15px;
+border-radius:12px;
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+}
+
+.stat-box{
+background:#001f54;
+padding:25px;
+border-radius:20px;
+text-align:center;
+}
+
+.stat-box h1{
+font-size:42px;
+color:#FFD700;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:100px;
+padding:50px;
+background:#00142f;
+text-align:center;
+}
+
+footer h2{
+margin-bottom:10px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:50px;
+}
+
+.hero-content p{
+font-size:18px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+
+<div class="logo">
+🏆 FIFA <span>HUB</span>
+</div>
+
+<a href="teams.html" class="back-btn">
+← Back to Teams
+</a>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1 id="teamName">
+Loading...
+</h1>
+
+<p id="nickname">
+Loading...
+</p>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="grid">
+
+<!-- TEAM INFO -->
+
+<div class="card">
+
+<h2>Team Information</h2>
+
+<div id="teamInfo" class="info"></div>
+
+</div>
+
+<!-- HISTORY -->
+
+<div class="card">
+
+<h2>World Cup History</h2>
+
+<p id="historyText"></p>
+
+</div>
+
+<!-- TITLES -->
+
+<div class="card">
+
+<h2>World Cup Titles</h2>
+
+<div id="worldCupTitles" class="timeline"></div>
+
+</div>
+
+<!-- LEGENDS -->
+
+<div class="card">
+
+<h2>Legends</h2>
+
+<div id="legends" class="list"></div>
+
+</div>
+
+</div>
+
+<br><br>
+
+<!-- SQUAD -->
+
+<div class="card">
+
+<h2>Current Squad</h2>
+
+<br>
+
+<h3>Goalkeepers</h3>
+<div id="gk" class="list"></div>
+
+<br>
+
+<h3>Defenders</h3>
+<div id="df" class="list"></div>
+
+<br>
+
+<h3>Midfielders</h3>
+<div id="mf" class="list"></div>
+
+<br>
+
+<h3>Forwards</h3>
+<div id="fw" class="list"></div>
+
+</div>
+
+<br><br>
+
+<!-- STATS -->
+
+<div class="card">
+
+<h2>World Cup Statistics</h2>
+
+<div id="stats" class="stats"></div>
+
+</div>
+
+</div>
+
+<footer>
+
+<h2 id="footerTeam">
+Team Profile
+</h2>
+
+<p>
+FIFA World Cup Fan Hub
+</p>
+
+</footer>
+
+<script>
+
+/* CHECK DATA FILE */
+
+if(typeof teams === "undefined"){
+
+document.body.innerHTML = `
+<h1 style="padding:50px;color:red;">
+teams-data.js failed to load
+</h1>
+`;
+
+throw new Error("teams-data.js not loaded");
+
+}
+
+/* GET TEAM ID */
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const teamId =
+params.get("id");
+
+/* FIND TEAM */
+
+const team =
+teams[teamId];
+
+/* TEAM NOT FOUND */
+
+if(!team){
+
+document.body.innerHTML = `
+<h1 style="padding:50px;">
+Team Not Found
+</h1>
+`;
+
+throw new Error("Team not found");
+
+}
+
+/* HERO */
+
+const flagDisplay = team.flagurl.startsWith("http") 
+    ? `<img src="${team.flagurl}" style="width:50px; vertical-align:middle; margin-right:10px;">` 
+    : team.flagurl;
+
+document.getElementById("teamName").innerHTML = `${flagDisplay} ${team.name}`;
+document.getElementById("nickname")
+.innerHTML =
+team.nickname;
+
+/* TEAM INFO */
+
+document.getElementById("teamInfo")
+.innerHTML = `
+
+<b>Coach:</b> ${team.coach}<br>
+
+<b>Captain:</b> ${team.captain}<br>
+
+<b>FIFA Ranking:</b> #${team.ranking}<br>
+
+<b>Confederation:</b> ${team.confederation}<br>
+
+<b>World Cup Titles:</b> ${team.titles}<br>
+
+<b>Appearances:</b> ${team.appearances}<br>
+
+<b>Best Finish:</b> ${team.bestFinish}
+
+`;
+
+/* HISTORY */
+
+document.getElementById("historyText")
+.innerHTML =
+team.history;
+
+/* TITLES */
+
+let titlesHTML = "";
+
+team.worldCupsWon.forEach(year=>{
+
+titlesHTML += `
+<div class="year">
+🏆 ${year}
+</div>
+`;
+
+});
+
+document.getElementById("worldCupTitles")
+.innerHTML =
+titlesHTML;
+
+/* LEGENDS */
+
+let legendsHTML = "";
+
+team.legends.forEach(player=>{
+
+legendsHTML += `
+<div>${player}</div>
+`;
+
+});
+
+document.getElementById("legends")
+.innerHTML =
+legendsHTML;
+
+/* SQUAD */
+
+function loadPlayers(id,players){
+
+let html = "";
+
+players.forEach(player=>{
+
+html += `
+<div>${player}</div>
+`;
+
+});
+
+document.getElementById(id)
+.innerHTML =
+html;
+
+}
+
+loadPlayers(
+"gk",
+team.squad.goalkeepers
+);
+
+loadPlayers(
+"df",
+team.squad.defenders
+);
+
+loadPlayers(
+"mf",
+team.squad.midfielders
+);
+
+loadPlayers(
+"fw",
+team.squad.forwards
+);
+
+/* STATS */
+
+document.getElementById("stats")
+.innerHTML = `
+
+<div class="stat-box">
+<h1>${team.stats.matchesPlayed}</h1>
+<p>Matches</p>
+</div>
+
+<div class="stat-box">
+<h1>${team.stats.wins}</h1>
+<p>Wins</p>
+</div>
+
+<div class="stat-box">
+<h1>${team.stats.draws}</h1>
+<p>Draws</p>
+</div>
+
+<div class="stat-box">
+<h1>${team.stats.losses}</h1>
+<p>Losses</p>
+</div>
+
+<div class="stat-box">
+<h1>${team.stats.goalsScored}</h1>
+<p>Goals</p>
+</div>
+
+`;
+
+document.getElementById("footerTeam")
+.innerHTML =
+`${team.flag} ${team.name}`;
+
+</script>
+<script src="../music-player.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery & Fantasy Team - FIFA World Cup Fan Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="music-player.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f4f6fb;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero-sub{
+height:55vh;
+background:
+linear-gradient(rgba(0,10,30,.55),rgba(0,10,30,.75)),
+url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1800");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+position:relative;
+}
+
+/* NAVBAR */
+
+nav{
+position:absolute;
+top:25px;
+width:90%;
+height:75px;
+background:rgba(58,74,15,.55);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.2);
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+}
+
+.logo{
+font-size:26px;
+font-weight:800;
+color:white;
+text-decoration:none;
+}
+.logo span{ color:#FFD700; }
+
+.menu{ display:flex; gap:30px; }
+
+.menu a{
+color:white;
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+}
+.menu a:hover,
+.menu .active{ color:#FFD700; }
+
+.ticket-btn{
+padding:12px 25px;
+border-radius:50px;
+border:none;
+font-weight:700;
+cursor:pointer;
+background:#FFD700;
+}
+
+.hero-content{ text-align:center; padding:0 20px; }
+
+.hero-content h1{
+font-size:64px;
+font-weight:900;
+}
+
+.hero-content p{
+font-size:20px;
+margin-top:15px;
+opacity:.9;
+}
+
+.hero-cta-row{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:30px;
+flex-wrap:wrap;
+margin-top:32px;
+}
+
+.hero-cta{
+border:none;
+cursor:pointer;
+font-family:'Poppins',sans-serif;
+font-weight:700;
+font-size:15px;
+transition:.25s;
+}
+
+.hero-cta.primary{
+background:#FFD700;
+color:#001f54;
+padding:16px 32px;
+border-radius:50px;
+box-shadow:0 8px 20px rgba(255,215,0,.3);
+}
+.hero-cta.primary:hover{ transform:translateY(-2px); }
+
+.hero-cta.secondary{
+background:transparent;
+color:#FFD700;
+padding:14px 10px;
+}
+.hero-cta.secondary:hover{ opacity:.8; }
+
+/* STATS BAR */
+
+.stats-bar{
+background:#ffffff;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:22px;
+padding:55px 8%;
+}
+
+.stat-card{
+text-align:center;
+padding:35px 15px;
+background:#0b2447;
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+}
+
+.stat-icon{
+margin-bottom:16px;
+display:flex;
+justify-content:center;
+}
+.stat-icon svg{
+width:34px;
+height:34px;
+stroke:#FFD700;
+}
+
+.stat-number{
+font-size:32px;
+font-weight:800;
+color:white;
+margin-bottom:6px;
+}
+
+.stat-label{
+font-size:14px;
+color:#9fb3d1;
+}
+
+/* SHARED SECTION */
+
+section{ padding:70px 8%; }
+
+.section-title{
+text-align:center;
+margin-bottom:10px;
+}
+.section-title h2{
+font-size:36px;
+color:#001f54;
+font-weight:800;
+}
+.section-title p{
+color:#666;
+margin-top:8px;
+font-size:15px;
+}
+
+/* TABS (used in both gallery + builder) */
+
+.tab-row{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+margin:35px 0;
+}
+.tab-btn{
+padding:10px 22px;
+border-radius:50px;
+border:none;
+background:#0b2a52;
+color:#cfe0f5;
+font-weight:600;
+cursor:pointer;
+font-size:14px;
+transition:.25s;
+}
+.tab-btn.active,
+.tab-btn:hover{
+background:#FFD700;
+color:#001f54;
+}
+
+/* ============ GALLERY ============ */
+
+.gallery-section{
+background:#dbdcdd;
+padding-top:60px;
+}
+
+.gallery-heading{
+text-align:center;
+margin-bottom:25px;
+}
+.gallery-heading h2{
+font-size:34px;
+color:#001f54;
+font-weight:800;
+}
+
+.search-wrap{
+display:flex;
+justify-content:center;
+margin-bottom:10px;
+}
+.search-wrap input{
+width:100%;
+max-width:520px;
+padding:15px 26px;
+border-radius:50px;
+border:none;
+font-size:14px;
+font-family:'Poppins',sans-serif;
+outline:none;
+}
+
+.upload-card{
+max-width:820px;
+margin:40px auto 50px auto;
+background:#0b2a52;
+border-radius:24px;
+padding:35px;
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.upload-card h3{
+color:#FFD700;
+font-size:20px;
+margin-bottom:18px;
+}
+
+.profile-photo-row{
+display:flex;
+align-items:center;
+gap:16px;
+margin-bottom:22px;
+}
+
+.profile-photo-picker{
+width:64px;
+height:64px;
+border-radius:50%;
+background:#122f5c;
+border:2px dashed rgba(255,255,255,.25);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+cursor:pointer;
+flex-shrink:0;
+overflow:hidden;
+transition:.2s;
+}
+.profile-photo-picker:hover{ border-color:#FFD700; }
+.profile-photo-picker img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.profile-photo-hint{
+font-size:12px;
+color:#9fb3d1;
+line-height:1.5;
+}
+.profile-photo-hint span{ color:#6f85a8; }
+
+.form-row{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:15px;
+}
+
+.form-row input[type=text],
+.form-row select,
+.form-row textarea{
+flex:1;
+min-width:180px;
+padding:12px 16px;
+border-radius:12px;
+border:2px solid transparent;
+background:#122f5c;
+color:white;
+font-size:14px;
+font-family:'Poppins',sans-serif;
+outline:none;
+transition:.2s;
+}
+.form-row input::placeholder,
+.form-row textarea::placeholder{ color:#8ea3c4; }
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus{
+border-color:#FFD700;
+}
+.form-row select option{ background:#0b2a52; color:white; }
+
+textarea{ resize:vertical; min-height:80px; }
+
+.file-drop{
+border:2px dashed rgba(255,255,255,.25);
+border-radius:14px;
+padding:22px;
+text-align:center;
+color:#9fb3d1;
+font-size:14px;
+cursor:pointer;
+transition:.2s;
+margin-bottom:15px;
+}
+.file-drop:hover{ border-color:#FFD700; background:rgba(255,255,255,.03); }
+.file-drop.has-file{ border-color:#2ecc71; color:#6be3a0; }
+
+.post-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:linear-gradient(135deg,#FFD700,#ff8c00);
+color:#001f54;
+font-weight:700;
+font-size:15px;
+cursor:pointer;
+transition:.2s;
+}
+.post-btn:hover{ opacity:.9; transform:translateY(-1px); }
+
+.gallery-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+gap:26px;
+padding-bottom:30px;
+}
+
+.gallery-card{
+background:#0b2a52;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+transition:.3s;
+position:relative;
+}
+.gallery-card:hover{ transform:translateY(-6px); }
+
+.gallery-media{
+width:100%;
+height:230px;
+object-fit:cover;
+background:#122f5c;
+display:block;
+}
+
+.gallery-media.video-wrap{
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.gallery-media video{ width:100%; height:100%; object-fit:cover; }
+
+.blog-block{
+height:230px;
+background:linear-gradient(135deg,#001f54,#003a8c);
+color:white;
+padding:22px;
+overflow-y:auto;
+font-size:14px;
+line-height:1.6;
+}
+
+.type-pill-float{
+position:absolute;
+top:14px;
+right:14px;
+font-size:11px;
+font-weight:700;
+padding:5px 12px;
+border-radius:20px;
+background:#FFD700;
+color:#001f54;
+text-transform:uppercase;
+}
+
+.gallery-body{ padding:20px; }
+
+.gallery-meta{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:14px;
+}
+
+.avatar-circle{
+width:38px;
+height:38px;
+border-radius:50%;
+background:linear-gradient(135deg,#FFD700,#f5a623);
+color:#001f54;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+font-size:14px;
+flex-shrink:0;
+overflow:hidden;
+}
+.avatar-circle img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.fan-name{
+font-weight:700;
+color:white;
+font-size:14px;
+display:block;
+}
+.fan-location{
+font-size:12px;
+color:#9fb3d1;
+}
+
+.post-title{
+color:white;
+font-size:17px;
+font-weight:700;
+margin-bottom:8px;
+}
+
+.caption{
+color:#b9c7de;
+font-size:14px;
+margin-bottom:16px;
+line-height:1.5;
+}
+
+.gallery-footer{
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-top:1px solid rgba(255,255,255,.08);
+padding-top:14px;
+}
+
+.footer-action{
+display:flex;
+align-items:center;
+gap:6px;
+background:none;
+border:none;
+color:#b9c7de;
+font-size:13px;
+cursor:pointer;
+font-family:'Poppins',sans-serif;
+transition:.2s;
+}
+.footer-action:hover{ color:#FFD700; }
+.footer-action.liked{ color:#e74c3c; }
+
+.empty-state{
+text-align:center;
+color:#9fb3d1;
+padding:60px 20px;
+grid-column:1/-1;
+font-size:15px;
+}
+
+.post-card{
+
+background:#0d1f35;
+
+border-radius:20px;
+
+overflow:hidden;
+
+transition:.35s;
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+.post-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.post-card img{
+
+width:100%;
+height:230px;
+object-fit:cover;
+
+}
+
+.post-content{
+
+padding:22px;
+
+}
+
+.post-top{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+
+}
+
+.user{
+
+display:flex;
+align-items:center;
+color:white;
+gap:10px;
+
+}
+
+.user img{
+
+width:45px;
+height:45px;
+border-radius:50%;
+object-fit:cover;
+
+}
+
+.badge{
+
+background:#FFD700;
+color:#000;
+padding:5px 12px;
+border-radius:20px;
+font-size:12px;
+font-weight:700;
+
+}
+
+.post-content h3{
+color: whitesmoke;
+margin-bottom:12px;
+
+}
+
+.post-content p{
+
+color:#cfd7e4;
+line-height:1.6;
+
+}
+
+.post-actions{
+
+display:flex;
+justify-content:space-between;
+margin-top:20px;
+padding-top:18px;
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.post-actions button{
+
+background:none;
+border:none;
+color:white;
+cursor:pointer;
+font-size:15px;
+
+}
+
+.post-actions button:hover{
+
+color:#FFD700;
+
+}
+
+/* ============ FANTASY TEAM BUILDER ============ */
+
+.builder-wrap{
+background:#00142f;
+border-radius:28px;
+padding:45px;
+color:white;
+}
+
+.builder-top{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+margin-bottom:30px;
+}
+
+.builder-top select,
+.builder-top input{
+padding:12px 18px;
+border-radius:12px;
+border:none;
+font-size:14px;
+font-weight:600;
+font-family:'Poppins',sans-serif;
+min-width:170px;
+}
+
+.logo-upload-btn{
+padding:12px 18px;
+border-radius:12px;
+background:#0b2a52;
+color:#FFD700;
+font-size:13px;
+font-weight:700;
+cursor:pointer;
+display:inline-flex;
+align-items:center;
+border:2px dashed rgba(255,215,0,.4);
+transition:.2s;
+}
+.logo-upload-btn:hover{ background:#123a6b; }
+.logo-upload-btn.has-file{ border-color:#2ecc71; color:#6be3a0; }
+
+.builder-layout{
+display:flex;
+gap:35px;
+flex-wrap:wrap;
+justify-content:center;
+align-items:flex-start;
+}
+
+/* PITCH */
+
+#captureArea{
+background:#003a1f;
+border-radius:20px;
+padding:20px;
+display:inline-block;
+}
+
+.pitch{
+position:relative;
+width:480px;
+max-width:88vw;
+aspect-ratio:480/650;
+background:
+repeating-linear-gradient(
+0deg,
+#1e7a3d,
+#1e7a3d 10%,
+#238f47 10%,
+#238f47 20%
+);
+border:4px solid rgba(255,255,255,.85);
+border-radius:14px;
+overflow:hidden;
+}
+
+.pitch::before{
+content:"";
+position:absolute;
+top:50%; left:0; right:0;
+height:2px;
+background:rgba(255,255,255,.8);
+}
+.pitch::after{
+content:"";
+position:absolute;
+top:50%; left:50%;
+width:90px; height:90px;
+border:2px solid rgba(255,255,255,.8);
+border-radius:50%;
+transform:translate(-50%,-50%);
+}
+
+.pbox{
+position:absolute;
+left:50%;
+width:200px;
+height:60px;
+transform:translateX(-50%);
+border:2px solid rgba(255,255,255,.8);
+}
+.pbox.top{ top:0; }
+.pbox.bottom{ bottom:0; }
+
+.slot{
+position:absolute;
+transform:translate(-50%,-50%);
+display:flex;
+flex-direction:column;
+align-items:center;
+cursor:pointer;
+width:70px;
+}
+
+.jersey{
+width:52px;
+height:52px;
+border-radius:50%;
+background:linear-gradient(135deg,#FFD700,#f5a623);
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+color:#001f54;
+font-size:18px;
+border:3px solid white;
+box-shadow:0 4px 10px rgba(0,0,0,.35);
+transition:.2s;
+}
+.jersey.gk{ background:linear-gradient(135deg,#ff6b6b,#e63946); color:white; }
+.jersey.df{ background:linear-gradient(135deg,#4facfe,#00c6fb); color:#00294d; }
+.jersey.mf{ background:linear-gradient(135deg,#a8ff78,#78ffd6); color:#013300; }
+.jersey.fw{ background:linear-gradient(135deg,#FFD700,#ff8c00); color:#3d1f00; }
+
+.jersey img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:50%;
+}
+
+.jersey.has-photo{
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+.slot:hover .jersey{ transform:scale(1.08); }
+
+.slot-name{
+margin-top:6px;
+font-size:11px;
+font-weight:700;
+text-align:center;
+background:rgba(0,0,0,.55);
+padding:2px 6px;
+border-radius:8px;
+max-width:90px;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+
+/* team header inside capture */
+
+.team-header{
+text-align:center;
+margin-bottom:14px;
+}
+.team-header .crest{
+width:64px; height:64px;
+border-radius:50%;
+margin:0 auto 8px auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+font-size:20px;
+color:white;
+border:3px solid #FFD700;
+overflow:hidden;
+}
+.team-header .crest img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+.team-header h3{
+font-size:22px;
+letter-spacing:1px;
+}
+.team-header .mgr{
+font-size:13px;
+color:#c9e6d3;
+margin-top:4px;
+}
+
+/* side panel */
+
+.side-panel{
+width:280px;
+max-width:90vw;
+}
+.picker-box{
+background:#0b2a52;
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+}
+.picker-box h4{
+font-size:14px;
+margin-bottom:12px;
+color:#FFD700;
+}
+.picker-box input,
+.picker-box select{
+width:100%;
+padding:10px 14px;
+border-radius:10px;
+border:none;
+margin-bottom:10px;
+font-size:13px;
+font-family:'Poppins',sans-serif;
+}
+.picker-box button{
+width:100%;
+padding:10px;
+border:none;
+border-radius:10px;
+background:#FFD700;
+color:#001f54;
+font-weight:700;
+cursor:pointer;
+}
+.picker-box button:hover{ opacity:.9; }
+.picker-hint{
+font-size:11px;
+color:#9fb3d1;
+margin-top:6px;
+}
+
+.snap-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+background:linear-gradient(135deg,#FFD700,#ff8c00);
+color:#001f54;
+font-weight:800;
+font-size:15px;
+cursor:pointer;
+transition:.2s;
+box-shadow:0 8px 20px rgba(255,180,0,.3);
+}
+.snap-btn:hover{ transform:translateY(-2px); }
+
+.snapshot-preview{
+margin-top:16px;
+text-align:center;
+}
+.snapshot-preview img{
+width:100%;
+border-radius:12px;
+border:2px solid #FFD700;
+}
+.snapshot-preview a{
+display:inline-block;
+margin-top:10px;
+color:#FFD700;
+font-size:13px;
+font-weight:700;
+text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+background:#00142f;
+color:white;
+padding:60px;
+text-align:center;
+}
+
+@media(max-width:900px){
+.menu{ display:none; }
+.hero-content h1{ font-size:38px; }
+.builder-wrap{ padding:22px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="hero-sub">
+<nav>
+<div class="logo">
+🏆 FIFA<span>HUB</span>
+</div>
+
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="teams/teams.html">Teams</a>
+<a href="matches/matches.html">Matches</a>
+<a href="players/players.html">Players</a>
+<a href="stadium.html">Stadiums</a>
+<a href="gallery.html" class="active">Gallery</a>
+<a href="news.html">News</a>
+</div>
+<a href="../index.html"><button class="ticket-btn">Buy Tickets</button></a>
+</nav>
+
+<div class="hero-content">
+<h1>Fan Zone</h1>
+<p>Share your World Cup memories and build your ultimate dream team</p>
+<div class="hero-cta-row">
+<button class="hero-cta primary" onclick="document.getElementById('gallery-section').scrollIntoView({behavior:'smooth'})">☁️ Upload Memory</button>
+<button class="hero-cta secondary" onclick="document.getElementById('builder-section').scrollIntoView({behavior:'smooth'})">⚽ Build Fantasy Team</button>
+</div>
+</div>
+</header>
+
+<!-- ============ STATS BAR ============ -->
+<div class="stats-bar">
+<div class="stat-card">
+<div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22H4a2 2 0 0 1-2-2V6"/><path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18"/><circle cx="12" cy="8" r="2"/><rect width="16" height="16" x="6" y="2" rx="2"/></svg></div>
+<div class="stat-number" id="statPhotos">18,540+</div>
+<div class="stat-label">Fan Photos</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></div>
+<div class="stat-number" id="statVideos">6,240+</div>
+<div class="stat-label">Fan Videos</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></div>
+<div class="stat-number" id="statBlogs">3,210+</div>
+<div class="stat-label">Football Blogs</div>
+</div>
+<div class="stat-card">
+<div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+<div class="stat-number">120K+</div>
+<div class="stat-label">Community Members</div>
+</div>
+</div>
+
+<!-- ============ GALLERY SECTION ============ -->
+<section id="gallery-section" class="gallery-section">
+<div class="gallery-heading">
+<h2>🌍 FIFA Fan Gallery</h2>
+</div>
+
+<div class="search-wrap">
+<input type="text" id="gallerySearch" placeholder="Search fans, clubs, countries or players..." oninput="renderGallery(currentFilter)">
+</div>
+
+<div class="tab-row">
+<button class="tab-btn active" data-filter="all" onclick="filterGallery('all',this)">All</button>
+<button class="tab-btn" data-filter="photo" onclick="filterGallery('photo',this)">Photos</button>
+<button class="tab-btn" data-filter="video" onclick="filterGallery('video',this)">Videos</button>
+<button class="tab-btn" data-filter="blog" onclick="filterGallery('blog',this)">Blogs</button>
+<button class="tab-btn" data-filter="fanart" onclick="filterGallery('fanart',this)">Fan Art</button>
+<button class="tab-btn" data-filter="celebration" onclick="filterGallery('celebration',this)">Celebrations</button>
+<button class="tab-btn" data-filter="stadium" onclick="filterGallery('stadium',this)">Stadium</button>
+</div>
+
+<div class="upload-card" id="upload-form">
+<h3>Share Your Moment</h3>
+
+<div class="profile-photo-row">
+<label class="profile-photo-picker" id="profilePhotoPicker" for="profilePhotoInput">
+<span id="profilePhotoPlaceholder">📷</span>
+<img id="profilePhotoPreview" style="display:none;">
+</label>
+<input type="file" id="profilePhotoInput" accept="image/*" style="display:none" onchange="handleProfilePhoto()">
+<div class="profile-photo-hint">Add your photo<br><span>(optional, shown next to your posts)</span></div>
+</div>
+
+<div class="form-row">
+<input type="text" id="fanName" placeholder="Your name">
+<input type="text" id="fanLocation" placeholder="Your location (e.g. US USA)">
+</div>
+
+<div class="form-row">
+<input type="text" id="postTitle" placeholder="Give it a title (e.g. Opening Match Experience)">
+<select id="postType" onchange="toggleUploadFields()">
+<option value="photo">📷 Photo</option>
+<option value="video">🎬 Video</option>
+<option value="blog">✍️ Blog / Story</option>
+<option value="fanart">🎨 Fan Art</option>
+<option value="celebration">🎉 Celebration</option>
+<option value="stadium">🏟️ Stadium</option>
+</select>
+</div>
+
+<div id="mediaField">
+<label class="file-drop" id="dropLabel" for="mediaInput">
+Click to upload a photo or video
+</label>
+<input type="file" id="mediaInput" accept="image/*,video/*" style="display:none" onchange="handleFile()">
+</div>
+
+<div class="form-row">
+<textarea id="postText" placeholder="Write a caption or tell your story..."></textarea>
+</div>
+
+<button class="post-btn" onclick="addPost()">Post to Gallery</button>
+</div>
+
+<div class="gallery-grid" id="galleryGrid">
+<div class="empty-state" id="emptyState">No memories posted yet — be the first to share one! ⚽</div>
+</div>
+
+<section class="gallery-grid">
+
+<div class="post-card">
+
+<img src="https://i.pinimg.com/736x/33/de/c9/33dec9c88fb6acde186ba5bb393b1458.jpg">
+
+<div class="post-content">
+
+<div class="post-top">
+
+<div class="user">
+
+<img src="https://i.pravatar.cc/150?img=12">
+
+<div>
+
+<strong>Alex Johnson</strong><br>
+<small>🇺🇸 USA</small>
+
+</div>
+
+</div>
+
+<span class="badge">
+PHOTO
+</span>
+
+</div>
+
+<h3>Opening Match Experience 🇲🇽</h3>
+
+<p>
+An unforgettable atmosphere inside the stadium. The chants,
+the lights and thousands of supporters made it the greatest
+football experience of my life.
+</p>
+
+<div class="post-actions">
+
+<button>
+❤️ 2.4K
+</button>
+
+<button>
+💬 314
+</button>
+
+<button>
+🔗 Share
+</button>
+
+</div>
+
+</div>
+
+</div>
+<div class="post-card">
+
+<img src="https://i.pinimg.com/736x/69/b1/46/69b14614a220de05c506baee501f4d3b.jpg">
+
+<div class="post-content">
+
+<div class="post-top">
+
+<div class="user">
+
+<img src="https://i.pravatar.cc/150?img=28">
+
+<div>
+
+<strong>Sophia Martinez</strong><br>
+<small>🇦🇷 Argentina</small>
+
+</div>
+
+</div>
+
+<span class="badge">
+VIDEO
+</span>
+
+</div>
+
+<h3>Messi Celebration 💙🤍</h3>
+
+<p>
+Captured the magical moment when thousands of fans celebrated
+Argentina's victory together. Football truly unites the world.
+</p>
+
+<div class="post-actions">
+
+<button>❤️ 5.8K</button>
+
+<button>💬 891</button>
+
+<button>▶ Play</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="post-card">
+
+<img src="https://i.pinimg.com/736x/02/3c/de/023cde1dfbf11dd54761009846592a8f.jpg">
+
+<div class="post-content">
+
+<div class="post-top">
+
+<div class="user">
+
+<img src="https://i.pravatar.cc/150?img=48">
+
+<div>
+
+<strong>Lucas Pereira</strong><br>
+<small>🇧🇷 Brazil</small>
+
+</div>
+
+</div>
+
+<span class="badge">
+BLOG
+</span>
+
+</div>
+
+<h3>My First FIFA World Cup</h3>
+
+<p>
+Watching the World Cup live had always been my dream. From the
+opening ceremony to the final whistle, every second was unforgettable.
+</p>
+
+<div class="post-actions">
+
+<button>❤️ 3.2K</button>
+
+<button>💬 426</button>
+
+<button>📖 Read</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="post-card">
+
+<img src="https://i.pinimg.com/736x/cc/11/d1/cc11d1110bf9ad9fb5bee99654458466.jpg">
+
+<div class="post-content">
+
+<div class="post-top">
+
+<div class="user">
+
+<img src="https://i.pravatar.cc/150?img=35">
+
+<div>
+
+<strong>Emma Wilson</strong><br>
+<small>🇬🇧 England</small>
+
+</div>
+
+</div>
+
+<span class="badge">
+PHOTO
+</span>
+
+</div>
+
+<h3>Night Under Stadium Lights</h3>
+
+<p>
+The atmosphere before kick-off was absolutely breathtaking. The
+stadium lights, music and supporters created an unforgettable memory.
+</p>
+
+<div class="post-actions">
+
+<button>❤️ 1.9K</button>
+
+<button>💬 214</button>
+
+<button>🔗 Share</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+TRENDING BLOGS
+=========================== -->
+
+<section style="padding:80px 8%;">
+
+<h1 class="section-title">
+
+🔥 Trending Fan Blogs
+
+</h1>
+
+<div class="gallery-grid">
+
+<div class="post-card">
+
+<img src="https://i.pinimg.com/736x/8a/7e/0b/8a7e0bd8e9738e3e9ba76a47688a5d4a.jpg">
+
+<div class="post-content">
+
+<h3>The Match I'll Never Forget</h3>
+
+<p>
+
+The roar of over seventy thousand supporters gave me goosebumps.
+It was more than football—it was a lifetime memory.
+
+</p>
+
+<br>
+
+<button class="ticket-btn">
+
+Read Full Story
+
+</button>
+
+</div>
+
+</div>
+
+<div class="post-card">
+
+<img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=900&q=80">
+
+<div class="post-content">
+
+<h3>Road to the Final</h3>
+
+<p>
+
+Traveling through three countries to watch the World Cup was
+the adventure of my dreams.
+
+</p>
+
+<br>
+
+<button class="ticket-btn">
+
+Continue Reading
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</section>
+
+
+<!-- ============ FANTASY TEAM BUILDER ============ -->
+<section id="builder-section" style="background:#f4f6fb;">
+<div class="section-title">
+<h2>⭐ Fantasy Dream Team Builder</h2>
+<p>Pick your formation, sign your legends, choose your club and manager — then snap a photo of your dream team</p>
+</div>
+
+<div class="builder-wrap">
+
+<div class="builder-top">
+<select id="formationSelect" onchange="renderFormation()">
+<option value="4-4-2">4-4-2</option>
+<option value="4-3-3">4-3-3</option>
+<option value="4-2-3-1">4-2-3-1</option>
+<option value="3-5-2">3-5-2</option>
+</select>
+
+<input type="text" id="teamNameInput" placeholder="Team name" value="My Dream Team" oninput="updateHeader()">
+
+<input type="text" id="clubSelect" placeholder="Club name" value="Real Legends FC" oninput="updateHeader()">
+
+<input type="text" id="clubLogoUrlInput" placeholder="Club logo URL (optional)" oninput="updateHeader()">
+<label class="logo-upload-btn" id="clubLogoLabel" for="clubLogoInput">🖼️ Upload Club Logo</label>
+<input type="file" id="clubLogoInput" accept="image/*" style="display:none" onchange="handleClubLogo()">
+
+<input type="text" id="managerInput" placeholder="Manager name" list="managerList" oninput="updateHeader()">
+<datalist id="managerList">
+<option value="Pep Guardiola">
+<option value="Carlo Ancelotti">
+<option value="Jurgen Klopp">
+<option value="Zinedine Zidane">
+<option value="Luis Enrique">
+<option value="Diego Simeone">
+</datalist>
+</div>
+
+<div class="builder-layout">
+
+<div id="captureArea">
+<div class="team-header" id="teamHeader">
+<div class="crest" id="teamCrest">RL</div>
+<h3 id="teamNameDisplay">MY DREAM TEAM</h3>
+<div class="mgr" id="mgrDisplay">Manager: —</div>
+</div>
+<div class="pitch" id="pitch">
+<div class="pbox top"></div>
+<div class="pbox bottom"></div>
+</div>
+</div>
+
+<div class="side-panel">
+<div class="picker-box">
+<h4 id="pickerTitle">SELECT A POSITION</h4>
+<input type="text" id="playerNameInput" placeholder="Player name">
+<input type="text" id="playerNumberInput" placeholder="Jersey number (optional)">
+<input type="text" id="playerPhotoUrlInput" placeholder="Photo URL (optional)">
+<label class="file-drop" id="photoDropLabel" for="playerPhotoInput" style="padding:14px;font-size:12px;margin-bottom:10px;">
+Or click to upload a photo
+</label>
+<input type="file" id="playerPhotoInput" accept="image/*" style="display:none" onchange="handlePlayerPhoto()">
+<button onclick="assignPlayer()">Sign Player</button>
+<div class="picker-hint">Tap any position on the pitch, then sign your player here. Add a photo via URL or upload — it'll replace the jersey icon.</div>
+</div>
+
+<button class="snap-btn" onclick="takeSnapshot()">📸 Take Team Photo</button>
+
+<div class="snapshot-preview" id="snapshotPreview" style="display:none;">
+<img id="snapshotImg">
+<br>
+<a id="snapshotDownload" download="dream-team.png">Download Photo</a>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer>
+<h2>FIFA World Cup Fan Hub</h2>
+<br>
+<p>The Ultimate Football Experience ⚽</p>
+</footer>
+
+<script>
+
+/* ================= GALLERY ================= */
+
+let posts = [];
+let uploadedMediaData = null;
+let uploadedMediaType = null;
+let uploadedProfilePhoto = null;
+
+const mediaTypes = ['photo','video','fanart','celebration','stadium'];
+const STORAGE_KEY = 'fifa_fan_gallery_posts';
+
+function savePosts(){
+try{
+localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+} catch(err){
+console.error('Could not save posts to local storage:', err);
+alert('Your post was added, but there was not enough browser storage to save it permanently (large photos/videos take up space). It will disappear if you refresh.');
+}
+}
+
+function loadPosts(){
+try{
+const saved = localStorage.getItem(STORAGE_KEY);
+if(saved){
+posts = JSON.parse(saved);
+}
+} catch(err){
+console.error('Could not load saved posts:', err);
+posts = [];
+}
+}
+
+function handleProfilePhoto(){
+const input = document.getElementById('profilePhotoInput');
+const file = input.files[0];
+if(!file) return;
+const reader = new FileReader();
+reader.onload = function(e){
+uploadedProfilePhoto = e.target.result;
+const img = document.getElementById('profilePhotoPreview');
+img.src = uploadedProfilePhoto;
+img.style.display = 'block';
+document.getElementById('profilePhotoPlaceholder').style.display = 'none';
+};
+reader.readAsDataURL(file);
+}
+
+function toggleUploadFields(){
+const type = document.getElementById('postType').value;
+const mediaField = document.getElementById('mediaField');
+const dropLabel = document.getElementById('dropLabel');
+mediaField.style.display = (type === 'blog') ? 'none' : 'block';
+dropLabel.textContent = type === 'video' ? 'Click to upload a video' : 'Click to upload a photo';
+dropLabel.classList.remove('has-file');
+uploadedMediaData = null;
+}
+
+function handleFile(){
+const input = document.getElementById('mediaInput');
+const file = input.files[0];
+if(!file) return;
+uploadedMediaType = file.type.startsWith('video') ? 'video' : 'image';
+const reader = new FileReader();
+reader.onload = function(e){
+uploadedMediaData = e.target.result;
+document.getElementById('dropLabel').textContent = '✓ ' + file.name;
+document.getElementById('dropLabel').classList.add('has-file');
+};
+reader.readAsDataURL(file);
+}
+
+function addPost(){
+const name = document.getElementById('fanName').value.trim() || 'Anonymous Fan';
+const location = document.getElementById('fanLocation').value.trim();
+const title = document.getElementById('postTitle').value.trim();
+const type = document.getElementById('postType').value;
+const text = document.getElementById('postText').value.trim();
+
+if(type !== 'blog' && !uploadedMediaData){
+alert('Please upload a photo or video, or switch to Blog / Story.');
+return;
+}
+if(type === 'blog' && !text){
+alert('Please write your story.');
+return;
+}
+
+posts.unshift({
+id: Date.now(),
+name: name,
+location: location,
+title: title || (type === 'blog' ? 'Fan Story' : 'Fan Moment'),
+type: type,
+media: uploadedMediaData,
+text: text,
+likes: 0,
+liked: false,
+comments: [],
+photo: uploadedProfilePhoto
+});
+
+document.getElementById('fanName').value = '';
+document.getElementById('fanLocation').value = '';
+document.getElementById('postTitle').value = '';
+document.getElementById('postText').value = '';
+document.getElementById('mediaInput').value = '';
+document.getElementById('dropLabel').textContent = 'Click to upload a photo or video';
+document.getElementById('dropLabel').classList.remove('has-file');
+uploadedMediaData = null;
+
+document.getElementById('profilePhotoInput').value = '';
+document.getElementById('profilePhotoPreview').style.display = 'none';
+document.getElementById('profilePhotoPlaceholder').style.display = 'block';
+uploadedProfilePhoto = null;
+
+savePosts();
+renderGallery('all');
+document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+document.querySelector('.tab-btn[data-filter="all"]').classList.add('active');
+updateStats();
+}
+
+function likePost(id){
+const p = posts.find(p=>p.id===id);
+if(p){
+if(p.liked){ p.likes--; p.liked = false; }
+else { p.likes++; p.liked = true; }
+savePosts();
+renderGallery(currentFilter);
+}
+}
+
+function addComment(id){
+const p = posts.find(p=>p.id===id);
+if(!p) return;
+const comment = prompt('Add a comment:');
+if(comment && comment.trim()){
+p.comments.push(comment.trim());
+savePosts();
+renderGallery(currentFilter);
+}
+}
+
+function sharePost(id){
+const p = posts.find(p=>p.id===id);
+if(!p) return;
+const shareText = `${p.title} — shared by ${p.name} on FIFA Fan Gallery`;
+if(navigator.clipboard){
+navigator.clipboard.writeText(shareText).then(()=>{
+alert('Link copied to clipboard! 🔗');
+}).catch(()=>{
+alert(shareText);
+});
+} else {
+alert(shareText);
+}
+}
+
+let currentFilter = 'all';
+
+function filterGallery(type, btn){
+currentFilter = type;
+document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+renderGallery(type);
+}
+
+function typeLabelOf(type){
+const labels = { photo:'Photo', video:'Video', blog:'Blog', fanart:'Fan Art', celebration:'Celebration', stadium:'Stadium' };
+return labels[type] || type;
+}
+
+function initialsOf(name){
+return name.split(' ').filter(Boolean).map(w=>w[0]).join('').substring(0,2).toUpperCase() || 'FC';
+}
+
+function renderGallery(filter){
+const grid = document.getElementById('galleryGrid');
+const searchInput = document.getElementById('gallerySearch');
+const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+let filtered = filter === 'all' ? posts : posts.filter(p=>p.type===filter);
+
+if(query){
+filtered = filtered.filter(p =>
+p.name.toLowerCase().includes(query) ||
+p.location.toLowerCase().includes(query) ||
+p.title.toLowerCase().includes(query) ||
+p.text.toLowerCase().includes(query)
+);
+}
+
+if(filtered.length === 0){
+grid.innerHTML = '<div class="empty-state">No memories here yet — be the first to share one! ⚽</div>';
+return;
+}
+
+grid.innerHTML = filtered.map(p => {
+let mediaHtml = '';
+if(p.type === 'blog'){
+mediaHtml = `<div class="blog-block">${escapeHtml(p.text)}</div>`;
+} else if(uploadedMediaTypeOf(p) === 'video'){
+mediaHtml = `<div class="gallery-media video-wrap"><video controls src="${p.media}"></video></div>`;
+} else {
+mediaHtml = `<img class="gallery-media" src="${p.media}">`;
+}
+
+const captionHtml = (p.type !== 'blog' && p.text) ? `<div class="caption">${escapeHtml(p.text)}</div>` : (p.type === 'blog' ? '' : '');
+
+return `
+<div class="gallery-card">
+${mediaHtml}
+<span class="type-pill-float">${typeLabelOf(p.type)}</span>
+<div class="gallery-body">
+<div class="gallery-meta">
+<div class="avatar-circle">${p.photo ? `<img src="${p.photo}">` : initialsOf(p.name)}</div>
+<div>
+<span class="fan-name">${escapeHtml(p.name)}</span>
+${p.location ? `<span class="fan-location">${escapeHtml(p.location)}</span>` : ''}
+</div>
+</div>
+<div class="post-title">${escapeHtml(p.title)}</div>
+${captionHtml}
+<div class="gallery-footer">
+<button class="footer-action ${p.liked?'liked':''}" onclick="likePost(${p.id})">❤️ ${p.likes}</button>
+<button class="footer-action" onclick="addComment(${p.id})">💬 ${p.comments.length}</button>
+<button class="footer-action" onclick="sharePost(${p.id})">🔗 Share</button>
+</div>
+</div>
+</div>`;
+}).join('');
+}
+
+function uploadedMediaTypeOf(p){
+if(!p.media) return 'image';
+return p.media.startsWith('data:video') ? 'video' : 'image';
+}
+
+function updateStats(){
+const photoBase = 18540, videoBase = 6240, blogBase = 3210;
+const photoCount = posts.filter(p=>['photo','fanart','celebration','stadium'].includes(p.type)).length;
+const videoCount = posts.filter(p=>p.type==='video').length;
+const blogCount = posts.filter(p=>p.type==='blog').length;
+document.getElementById('statPhotos').textContent = (photoBase + photoCount).toLocaleString() + '+';
+document.getElementById('statVideos').textContent = (videoBase + videoCount).toLocaleString() + '+';
+document.getElementById('statBlogs').textContent = (blogBase + blogCount).toLocaleString() + '+';
+}
+
+function escapeHtml(str){
+const div = document.createElement('div');
+div.textContent = str;
+return div.innerHTML;
+}
+
+/* ================= FANTASY TEAM BUILDER ================= */
+
+const formations = {
+"4-4-2": [
+{pos:"GK", x:50, y:92},
+{pos:"DF", x:15, y:75},{pos:"DF", x:38, y:78},{pos:"DF", x:62, y:78},{pos:"DF", x:85, y:75},
+{pos:"MF", x:15, y:48},{pos:"MF", x:38, y:52},{pos:"MF", x:62, y:52},{pos:"MF", x:85, y:48},
+{pos:"FW", x:38, y:20},{pos:"FW", x:62, y:20}
+],
+"4-3-3": [
+{pos:"GK", x:50, y:92},
+{pos:"DF", x:15, y:75},{pos:"DF", x:38, y:78},{pos:"DF", x:62, y:78},{pos:"DF", x:85, y:75},
+{pos:"MF", x:28, y:52},{pos:"MF", x:50, y:56},{pos:"MF", x:72, y:52},
+{pos:"FW", x:18, y:20},{pos:"FW", x:50, y:15},{pos:"FW", x:82, y:20}
+],
+"4-2-3-1": [
+{pos:"GK", x:50, y:92},
+{pos:"DF", x:15, y:75},{pos:"DF", x:38, y:78},{pos:"DF", x:62, y:78},{pos:"DF", x:85, y:75},
+{pos:"MF", x:35, y:58},{pos:"MF", x:65, y:58},
+{pos:"MF", x:20, y:35},{pos:"MF", x:50, y:32},{pos:"MF", x:80, y:35},
+{pos:"FW", x:50, y:14}
+],
+"3-5-2": [
+{pos:"GK", x:50, y:92},
+{pos:"DF", x:25, y:78},{pos:"DF", x:50, y:80},{pos:"DF", x:75, y:78},
+{pos:"MF", x:10, y:50},{pos:"MF", x:32, y:55},{pos:"MF", x:50, y:58},{pos:"MF", x:68, y:55},{pos:"MF", x:90, y:50},
+{pos:"FW", x:38, y:20},{pos:"FW", x:62, y:20}
+]
+};
+
+let squad = []; // {pos,x,y,name,number,photo}
+let selectedSlotIndex = null;
+let uploadedPlayerPhoto = null;
+
+function renderFormation(){
+const formationKey = document.getElementById('formationSelect').value;
+const layout = formations[formationKey];
+squad = layout.map(slot => ({...slot, name:'', number:'', photo:''}));
+selectedSlotIndex = null;
+renderPitch();
+}
+
+function handlePlayerPhoto(){
+const input = document.getElementById('playerPhotoInput');
+const file = input.files[0];
+if(!file) return;
+const reader = new FileReader();
+reader.onload = function(e){
+uploadedPlayerPhoto = e.target.result;
+document.getElementById('photoDropLabel').textContent = '✓ ' + file.name;
+document.getElementById('photoDropLabel').classList.add('has-file');
+document.getElementById('playerPhotoUrlInput').value = '';
+};
+reader.readAsDataURL(file);
+}
+
+function renderPitch(){
+const pitch = document.getElementById('pitch');
+pitch.querySelectorAll('.slot').forEach(el=>el.remove());
+
+squad.forEach((slot, i) => {
+const el = document.createElement('div');
+el.className = 'slot';
+el.style.left = slot.x + '%';
+el.style.top = slot.y + '%';
+el.onclick = () => selectSlot(i);
+
+const jerseyClass = slot.pos.toLowerCase();
+const label = slot.number ? slot.number : slot.pos;
+
+if(slot.photo){
+el.innerHTML = `
+<div class="jersey ${jerseyClass} has-photo" style="background-image:url('${slot.photo}')"></div>
+<div class="slot-name">${slot.name ? escapeHtml(slot.name) : 'Empty'}</div>
+`;
+} else {
+el.innerHTML = `
+<div class="jersey ${jerseyClass}">${label}</div>
+<div class="slot-name">${slot.name ? escapeHtml(slot.name) : 'Empty'}</div>
+`;
+}
+pitch.appendChild(el);
+});
+}
+
+function selectSlot(i){
+selectedSlotIndex = i;
+const slot = squad[i];
+document.getElementById('pickerTitle').textContent = `SIGNING: ${slot.pos} SLOT`;
+document.getElementById('playerNameInput').value = slot.name || '';
+document.getElementById('playerNumberInput').value = slot.number || '';
+document.getElementById('playerPhotoUrlInput').value = (slot.photo && !slot.photo.startsWith('data:')) ? slot.photo : '';
+document.getElementById('photoDropLabel').textContent = 'Or click to upload a photo';
+document.getElementById('photoDropLabel').classList.remove('has-file');
+uploadedPlayerPhoto = (slot.photo && slot.photo.startsWith('data:')) ? slot.photo : null;
+document.getElementById('playerNameInput').focus();
+}
+
+function assignPlayer(){
+if(selectedSlotIndex === null){
+alert('Tap a position on the pitch first.');
+return;
+}
+const name = document.getElementById('playerNameInput').value.trim();
+const number = document.getElementById('playerNumberInput').value.trim();
+const urlInput = document.getElementById('playerPhotoUrlInput').value.trim();
+if(!name){
+alert('Enter a player name.');
+return;
+}
+squad[selectedSlotIndex].name = name;
+squad[selectedSlotIndex].number = number;
+squad[selectedSlotIndex].photo = uploadedPlayerPhoto || urlInput || '';
+renderPitch();
+document.getElementById('playerNameInput').value = '';
+document.getElementById('playerNumberInput').value = '';
+document.getElementById('playerPhotoUrlInput').value = '';
+document.getElementById('playerPhotoInput').value = '';
+document.getElementById('photoDropLabel').textContent = 'Or click to upload a photo';
+document.getElementById('photoDropLabel').classList.remove('has-file');
+uploadedPlayerPhoto = null;
+document.getElementById('pickerTitle').textContent = 'SELECT A POSITION';
+selectedSlotIndex = null;
+}
+
+let uploadedClubLogo = null;
+
+function handleClubLogo(){
+const input = document.getElementById('clubLogoInput');
+const file = input.files[0];
+if(!file) return;
+const reader = new FileReader();
+reader.onload = function(e){
+uploadedClubLogo = e.target.result;
+document.getElementById('clubLogoLabel').textContent = '✓ ' + file.name;
+document.getElementById('clubLogoLabel').classList.add('has-file');
+document.getElementById('clubLogoUrlInput').value = '';
+updateHeader();
+};
+reader.readAsDataURL(file);
+}
+
+function updateHeader(){
+const teamName = document.getElementById('teamNameInput').value.trim() || 'My Dream Team';
+const club = document.getElementById('clubSelect').value;
+const manager = document.getElementById('managerInput').value.trim();
+const logoUrlInput = document.getElementById('clubLogoUrlInput').value.trim();
+
+document.getElementById('teamNameDisplay').textContent = teamName.toUpperCase();
+document.getElementById('mgrDisplay').textContent = 'Manager: ' + (manager || '—') + '  |  ' + club;
+
+if(logoUrlInput){ uploadedClubLogo = null; document.getElementById('clubLogoLabel').textContent = '🖼️ Upload Club Logo'; document.getElementById('clubLogoLabel').classList.remove('has-file'); }
+
+const logoSrc = uploadedClubLogo || logoUrlInput;
+const crest = document.getElementById('teamCrest');
+
+if(logoSrc){
+crest.innerHTML = '';
+crest.style.backgroundImage = `url('${logoSrc}')`;
+crest.style.backgroundSize = 'cover';
+crest.style.backgroundPosition = 'center';
+crest.style.background = `url('${logoSrc}') center/cover no-repeat, white`;
+} else {
+const initials = club.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+crest.innerHTML = initials || '?';
+crest.style.backgroundImage = 'none';
+crest.style.background = colorFromString(club);
+}
+}
+
+function colorFromString(str){
+if(!str) return '#001f54';
+let hash = 0;
+for(let i=0;i<str.length;i++){
+hash = str.charCodeAt(i) + ((hash << 5) - hash);
+}
+const hue = Math.abs(hash) % 360;
+return `hsl(${hue}, 55%, 32%)`;
+}
+
+function takeSnapshot(){
+const captureArea = document.getElementById('captureArea');
+
+const imgs = Array.from(captureArea.querySelectorAll('img'));
+const waitForImgs = imgs.map(img => {
+if(img.complete && img.naturalWidth !== 0) return Promise.resolve();
+return new Promise(resolve => {
+img.onload = resolve;
+img.onerror = resolve;
+});
+});
+
+const bgEls = Array.from(captureArea.querySelectorAll('*')).filter(el => {
+const bg = getComputedStyle(el).backgroundImage;
+return bg && bg !== 'none';
+});
+const waitForBg = bgEls.map(el => {
+const bg = getComputedStyle(el).backgroundImage;
+const match = bg.match(/url\(["']?(.*?)["']?\)/);
+if(!match) return Promise.resolve();
+return new Promise(resolve => {
+const preload = new Image();
+preload.onload = resolve;
+preload.onerror = resolve;
+preload.src = match[1];
+});
+});
+
+Promise.all([...waitForImgs, ...waitForBg]).then(() => {
+return html2canvas(captureArea, {
+backgroundColor:'#003a1f',
+scale:2,
+useCORS:true,
+allowTaint:true,
+imageTimeout:15000
+});
+}).then(canvas => {
+const dataUrl = canvas.toDataURL('image/png');
+document.getElementById('snapshotImg').src = dataUrl;
+document.getElementById('snapshotDownload').href = dataUrl;
+document.getElementById('snapshotPreview').style.display = 'block';
+document.getElementById('snapshotPreview').scrollIntoView({behavior:'smooth', block:'nearest'});
+}).catch(()=>{
+alert('Could not capture the photo. Please try again.');
+});
+}
+
+/* init */
+loadPosts();
+toggleUploadFields();
+renderFormation();
+updateHeader();
+updateStats();
+renderGallery('all');
+
+</script>
+
+<script src="music-player.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stadium Official View - FIFA World Cup Fan Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="music-player.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #fff;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            height: 75px;
+            background: rgba(58, 74, 15, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #FFD700;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            background: #FFD700;
+            color: #001f54;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #fff;
+        }
+
+        /* IFRAME CONTAINER */
+        .viewer-container {
+            flex: 1;
+            width: 100%;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Fallback message if website blocks embedding */
+        .fallback-msg {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f4f4f4;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .fallback-msg h2 {
+            color: #001f54;
+            margin-bottom: 10px;
+        }
+
+        .fallback-msg a {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #001f54;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">🏆 FIFA<span>HUB</span></a>
+        <a href="stadium.html" class="back-btn">← Back to Stadiums</a>
+    </nav>
+
+    <div class="viewer-container">
+        <!-- The website will load dynamically here -->
+        <iframe id="stadiumFrame" title="Stadium Website"></iframe>
+        
+        <!-- Fallback if the target website blocks frames -->
+        <div class="fallback-msg" id="fallbackMessage">
+            <h2>This website security restricts direct embedding</h2>
+            <p>Don't worry! You can open the official website directly in a new tab below:</p>
+            <a id="directLink" href="#" target="_blank">Open Official Website</a>
+        </div>
+    </div>
+
+    <script>
+        // Get the 'url' parameter from the link clicked
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetUrl = urlParams.get('url');
+
+        const iframe = document.getElementById('stadiumFrame');
+        const fallback = document.getElementById('fallbackMessage');
+        const directLink = document.getElementById('directLink');
+
+        if (targetUrl) {
+            iframe.src = targetUrl;
+            directLink.href = targetUrl;
+        } else {
+            iframe.style.display = 'none';
+            fallback.style.display = 'flex';
+            fallback.querySelector('h2').innerText = "No Stadium Website Specified";
+            directLink.style.display = 'none';
+        }
+
+        // Optional safety net: Check if iframe fails to load due to security headers (X-Frame-Options)
+        // Note: Modern browsers restrict cross-domain iframe error detection, 
+        // so if a site appears blank, users can click the fallback button.
+    </script>
+    <script src="music-player.js" defer></script>
+</body>
+</html>

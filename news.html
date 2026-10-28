@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FIFA Fan Hub | News</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="music-player.css">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f7fb;
+color:#111;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+position:absolute;
+top:25px;
+width:90%;
+height:75px;
+background:rgba(58,74,15,.55);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.2);
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+}
+
+.logo{
+font-size:26px;
+font-weight:800;
+color:white;
+text-decoration:none;
+}
+.logo span{ color:#FFD700; }
+
+.menu{ display:flex; gap:30px; }
+
+.menu a{
+color:white;
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+}
+.menu a:hover,
+.menu .active{ color:#FFD700; }
+
+.ticket-btn{
+padding:12px 25px;
+border-radius:50px;
+border:none;
+font-weight:700;
+cursor:pointer;
+background:#FFD700;
+}
+
+.hero{
+height:70vh;
+background:
+linear-gradient(rgba(0,0,0,.4),
+rgba(0,0,0,.6)),
+url("https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1800");
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+}
+
+.hero-content h1{
+font-size:90px;
+font-weight:900;
+}
+
+.hero-content p{
+font-size:20px;
+margin-top:10px;
+}
+
+.container{
+padding:80px 8%;
+}
+
+.search-box{
+display:flex;
+justify-content:center;
+margin-bottom:40px;
+}
+
+.search-box input{
+width:500px;
+max-width:100%;
+padding:18px;
+border:none;
+background:white;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.categories{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+margin-bottom:50px;
+}
+
+.categories button{
+padding:12px 22px;
+border:none;
+border-radius:50px;
+background:white;
+cursor:pointer;
+font-weight:600;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.categories button:hover{
+background:#001f54;
+color:white;
+}
+
+.featured{
+height:500px;
+border-radius:30px;
+overflow:hidden;
+position:relative;
+margin-bottom:60px;
+}
+
+.featured img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.featured-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(transparent,rgba(0,0,0,.85));
+}
+
+.featured-content{
+position:absolute;
+bottom:40px;
+left:40px;
+color:white;
+max-width:700px;
+}
+
+.featured-content span{
+background:#FFD700;
+color:black;
+padding:8px 15px;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+}
+
+.featured-content h2{
+margin-top:15px;
+font-size:45px;
+}
+
+.featured-content p{
+margin-top:10px;
+opacity:.9;
+}
+
+.news-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.news-card{
+background:white;
+border-radius:25px;
+overflow:hidden;
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+transition:.4s;
+cursor:pointer;
+}
+
+.news-card:hover{
+transform:translateY(-10px);
+}
+
+.news-card img{
+width:100%;
+height:230px;
+object-fit:cover;
+}
+
+.news-content{
+padding:25px;
+}
+
+.news-content span{
+background:#001f54;
+color:white;
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+}
+
+.news-content h3{
+margin-top:15px;
+font-size:24px;
+}
+
+.news-content p{
+margin-top:10px;
+color:#666;
+}
+
+.news-content a{
+display:inline-block;
+margin-top:15px;
+text-decoration:none;
+color:#001f54;
+font-weight:700;
+}
+
+.newsletter{
+margin-top:100px;
+background:#001f54;
+color:white;
+padding:60px;
+border-radius:30px;
+text-align:center;
+}
+
+.newsletter h2{
+font-size:40px;
+}
+
+.newsletter p{
+margin:15px 0 30px;
+}
+
+.newsletter input{
+padding:16px;
+width:350px;
+max-width:100%;
+border:none;
+border-radius:15px;
+}
+
+.newsletter button{
+padding:16px 25px;
+border:none;
+background:#FFD700;
+font-weight:700;
+border-radius:15px;
+margin-left:10px;
+cursor:pointer;
+}
+
+footer{
+background:#00142f;
+color:white;
+padding:40px;
+text-align:center;
+margin-top:80px;
+}
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:55px;
+}
+
+.featured-content h2{
+font-size:28px;
+}
+
+.newsletter{
+padding:35px;
+}
+
+.newsletter button{
+margin-top:15px;
+margin-left:0;
+}
+
+}
+
+</style>
+</head>
+<body>
+<nav>
+
+<div class="logo">
+🏆 FIFA<span>HUB</span>
+</div>
+
+<div class="menu">
+    <a href="index.html">Home</a>
+    <a href="teams/teams.html">Teams</a>
+    <a href="matches/matches.html">Matches</a>
+    <a href="players/players.html">Players</a>
+    <a href="stadium.html">Stadiums</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="news.html" class="active">News</a>
+</div>
+
+<a href="index.html">
+    <button class="ticket-btn" id="buyTickets">
+        Buy Tickets
+    </button>
+</a>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+<h1>WORLD CUP NEWS</h1>
+<p>Latest Stories, Updates & Breaking Headlines</p>
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search news...">
+</div>
+
+<div class="categories">
+<button>All</button>
+<button>Teams</button>
+<button>Players</button>
+<button>Transfers</button>
+<button>World Cup</button>
+<button>Injuries</button>
+<button>Predictions</button>
+</div>
+
+<div class="featured">
+
+<img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1800">
+
+<div class="featured-overlay"></div>
+
+<div class="featured-content">
+
+<span>BREAKING</span>
+
+<h2>World Cup Fever Takes Over The Globe</h2>
+
+<p>
+Millions of fans prepare for the biggest football spectacle ever.
+</p>
+
+</div>
+
+</div>
+
+<div class="news-grid" id="newsGrid">
+
+<div class="news-card">
+<img src="https://i.pinimg.com/1200x/6e/30/c9/6e30c968208d6d42337aaea9769d2957.jpg">
+<div class="news-content">
+<span>Brazil</span>
+<h3>Brazil Announces Final Squad</h3>
+<p>Top stars ready for the tournament.</p>
+<a href="brazilnews.html">Read More →</a>
+</div>
+</div>
+
+<div class="news-card">
+<img src="https://i.pinimg.com/1200x/85/6e/4e/856e4ef5f0ef569dc50f43e4108e6d6c.jpg">
+<div class="news-content">
+<span>Argentina</span>
+<h3>Argentina Chasing Back-To-Back Titles</h3>
+<p>Fans dream of another historic run.</p>
+<a href="argentina.html">Read More →</a>
+</div>
+</div>
+
+<div class="news-card">
+<img src="https://i.pinimg.com/736x/9a/1f/b0/9a1fb09db910d34cf628383ec30025be.jpg">
+<div class="news-content">
+<span>France</span>
+<h3>France Eyes Another World Cup</h3>
+<p>Depth and quality across the squad.</p>
+<a href="france.html">Read More →</a>
+</div>
+</div>
+
+<div class="news-card">
+<img src="https://i.pinimg.com/736x/cb/96/d7/cb96d7503128661b645ee49455a5820b.jpg">
+<div class="news-content">
+<span>Players</span>
+<h3>Top 10 Players To Watch</h3>
+<p>The stars expected to dominate.</p>
+<a href="players/top-10.html">Read More →</a>
+</div>
+</div>
+
+<div class="news-card">
+<img src="https://i.pinimg.com/1200x/c4/d3/4e/c4d34e07f2c63b2b03a144ec608fef33.jpg">
+<div class="news-content">
+<span>Stadiums</span>
+<h3>Best Stadiums Of The Tournament</h3>
+<p>Iconic venues ready to host legends.</p>
+<a href="stadium.html">Read More →</a>
+</div>
+</div>
+
+<div class="news-card">
+<img src="https://i.pinimg.com/1200x/d3/24/d4/d324d40250a31be7dbbc236d67150f0f.jpg">
+<div class="news-content">
+<span>Predictions</span>
+<h3>Experts Predict The Winner</h3>
+<p>Who will lift the trophy?</p>
+<a href="news-view.html?url=World Cup Prediction.mp4">Read More →</a>
+</div>
+</div>
+
+</div>
+
+<div class="newsletter">
+
+<h2>Subscribe For Daily Updates</h2>
+
+<p>
+Get breaking World Cup news delivered directly to your inbox.
+</p>
+
+<input type="email" placeholder="Enter your email">
+
+<button>Subscribe</button>
+
+</div>
+
+</div>
+
+<footer>
+<h2>🏆 FIFA World Cup Fan Hub</h2>
+<p>Stay Updated With Every Match & Story</p>
+</footer>
+
+<script>
+
+const searchInput=document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup",function(){
+
+let filter=this.value.toLowerCase();
+
+let cards=document.querySelectorAll(".news-card");
+
+cards.forEach(card=>{
+
+let text=card.innerText.toLowerCase();
+
+card.style.display=text.includes(filter)
+? "block"
+: "none";
+
+});
+
+});
+
+</script>
+<script>
+
+document.getElementById("buyTickets").addEventListener("click", () => {
+    window.location.href = "../index.html";
+});
+</script>
+<script src="music-player.js" defer></script>
+</body>
+</html>
